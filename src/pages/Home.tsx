@@ -13,8 +13,12 @@ import { Price } from '@/components/commerce/Price';
 import { Rating } from '@/components/commerce/Rating';
 import { ProductImage } from '@/components/commerce/ProductImage/ProductImage';
 import { QuantitySelector } from '@/components/commerce/QuantitySelector/QuantitySelector';
+import { ProductCard } from '@/components/commerce/ProductCard';
+import type { ProductCardData } from '@/components/commerce/ProductCard';
+import { products } from '@/data/products';
 export function HomePage() {
   const [quantity, setQuantity] = useState(1);
+
   return (
     // <div className="flex flex-wrap gap-4 p-8">
     //   <Button>Primary</Button>
@@ -118,25 +122,42 @@ export function HomePage() {
 
     // <QuantitySelector value={quantity} onValueChange={setQuantity} />
 
-    <div className="space-y-6">
-      <QuantitySelector
-        value={quantity}
-        onValueChange={setQuantity}
-        size="sm"
-      />
+    // <div className="space-y-6">
+    //   <QuantitySelector
+    //     value={quantity}
+    //     onValueChange={setQuantity}
+    //     size="sm"
+    //   />
 
-      <QuantitySelector
-        value={quantity}
-        onValueChange={setQuantity}
-        size="md"
-      />
+    //   <QuantitySelector
+    //     value={quantity}
+    //     onValueChange={setQuantity}
+    //     size="md"
+    //   />
 
-      <QuantitySelector
-        value={quantity}
-        onValueChange={setQuantity}
-        size="lg"
-      />
-    </div>
+    //   <QuantitySelector
+    //     value={quantity}
+    //     onValueChange={setQuantity}
+    //     size="lg"
+    //   />
+    // </div>
+
+    /* Product Card Demo */
+
+    <main className="container mx-auto py-10">
+      <h1 className="mb-8 text-3xl font-bold">Product Card Demo</h1>
+
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            onProductClick={(product) => console.log('Product:', product)}
+            onAddToCart={(product) => console.log('Add to cart:', product)}
+          />
+        ))}
+      </div>
+    </main>
   );
 }
 
