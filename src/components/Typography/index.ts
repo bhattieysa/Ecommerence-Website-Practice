@@ -1,5 +1,7 @@
 import { cva } from 'class-variance-authority';
 
+export { Typography } from './Typography';
+
 export const typographicVariants = cva('', {
   variants: {
     variant: {

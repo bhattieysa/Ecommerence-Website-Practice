@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-export const buttonVariants = cva(
+export const ButtonVariants = cva(
   // Base Classes
   [
     'inline-flex items-center justify-center rounded-lg font-medium',
@@ -28,13 +28,14 @@ export const buttonVariants = cva(
       },
 
       size: {
-        sm: 'h-8 px-3 text-sm',
+        sm: 'text-sm',
+        md: 'text-sm',
+        lg: 'text-base',
+      },
 
-        md: 'h-10 px-4',
-
-        lg: 'h-12 px-6 text-lg',
-
-        icon: 'h-10 w-10 p-0',
+      layout: {
+        default: '',
+        icon: '',
       },
 
       fullWidth: {
@@ -43,10 +44,43 @@ export const buttonVariants = cva(
       },
     },
 
+    compoundVariants: [
+      {
+        layout: 'default',
+        size: 'sm',
+        class: 'h-9 px-4',
+      },
+      {
+        layout: 'default',
+        size: 'md',
+        class: 'h-10 px-5',
+      },
+      {
+        layout: 'default',
+        size: 'lg',
+        class: 'h-12 px-6',
+      },
+      {
+        layout: 'icon',
+        size: 'sm',
+        class: 'h-9 w-9 p-0',
+      },
+      {
+        layout: 'icon',
+        size: 'md',
+        class: 'h-10 w-10 p-0',
+      },
+      {
+        layout: 'icon',
+        size: 'lg',
+        class: 'h-12 w-12 p-0',
+      },
+    ],
+
     defaultVariants: {
       variant: 'primary',
       size: 'md',
-      fullWidth: false,
+      layout: 'default',
     },
   },
 );

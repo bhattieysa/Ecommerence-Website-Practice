@@ -7,7 +7,6 @@
       "@/*": ["./src/*"]
     },
     "target": "es2023",
-    "ignoreDeprecations": "6.0",
     "lib": ["ES2023", "DOM"],
     "module": "esnext",
     "types": ["vite/client"],

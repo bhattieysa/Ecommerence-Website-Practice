@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority';
 export const TypographyVariants = cva('', {
   variants: {
     variant: {
-      display: 'text-5xl md:text-6xl font-extrabold tracking-tight',
+      display: 'text-display font-extrabold tracking-tight',
 
       h1: 'text-4xl md:text-5xl font-bold tracking-tight',
 
@@ -17,40 +17,36 @@ export const TypographyVariants = cva('', {
 
       h6: 'text-base font-semibold',
 
-      bodyLg: 'text-lg leading-8',
+      bodyLg: 'text-lg leading-relaxed',
 
-      body: 'text-base leading-7',
+      body: 'text-base leading-relaxed',
 
-      bodySm: 'text-sm leading-6',
+      bodySm: 'text-sm leading-relaxed',
 
-      caption: 'text-xs leading-5',
+      caption: 'text-xs',
 
       overline: 'text-xs uppercase tracking-widest font-medium',
-    },
 
-    color: {
-      default: 'text-gray-900',
+      heading1: 'text-4xl md:text-5xl font-bold tracking-tight',
 
-      muted: 'text-gray-500',
+      heading2: 'text-3xl md:text-4xl font-bold tracking-tight',
 
-      primary: 'text-blue-600',
+      heading3: 'text-2xl font-semibold',
 
-      success: 'text-green-600',
+      heading4: 'text-xl font-semibold',
 
-      danger: 'text-red-600',
+      heading5: 'text-lg font-semibold',
 
-      white: 'text-white',
-    },
+      heading6: 'text-base font-semibold',
 
-    align: {
-      left: 'text-left',
+      bodyLarge: 'text-lg leading-relaxed',
 
-      center: 'text-center',
-
-      right: 'text-right',
+      bodySmallAlias: 'text-sm leading-relaxed',
     },
 
     weight: {
+      light: 'font-light',
+
       normal: 'font-normal',
 
       medium: 'font-medium',
@@ -60,12 +56,50 @@ export const TypographyVariants = cva('', {
       bold: 'font-bold',
 
       extrabold: 'font-extrabold',
+
+      black: 'font-black',
+    },
+    
+    color: {
+      default: 'text-text',
+
+      muted: 'text-text-muted',
+
+      primary: 'text-primary',
+
+      success: 'text-success',
+
+      danger: 'text-danger',
+
+      white: 'text-white',
+    },
+
+    align: {
+      start: 'text-start',
+
+      center: 'text-center',
+
+      end: 'text-end',
+    },
+
+    truncate: {
+      true: 'truncate',
+    },
+
+    lineClamp: {
+      1: 'line-clamp-1',
+      2: 'line-clamp-2',
+      3: 'line-clamp-3',
+      4: 'line-clamp-4',
+      5: 'line-clamp-5',
     },
   },
 
   defaultVariants: {
     variant: 'body',
+
     color: 'default',
-    align: 'left',
+
+    align: 'start',
   },
 });

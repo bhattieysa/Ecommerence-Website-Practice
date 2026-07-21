@@ -1,8 +1,12 @@
-import type { ElementType, HTMLAttributes } from 'react';
 import type { VariantProps } from 'class-variance-authority';
-import { TypographyVariants } from '@/components/Typography/TypographyVariants'; // Note: typically lowercase 't' for the function instance
+import type { PolymorphicWithDefault, TypographyWeight } from '@/types';
+import { TypographyVariants } from '@/components/Typography/TypographyVariants';
 
-export type TypographyProps = HTMLAttributes<HTMLElement> &
-  VariantProps<typeof TypographyVariants> & {
-    as?: ElementType;
-  };
+type TypographyOwnProps = VariantProps<typeof TypographyVariants> & {
+  weight?: TypographyWeight;
+};
+
+export type TypographyProps = PolymorphicWithDefault<
+  TypographyOwnProps,
+  'p'
+>;

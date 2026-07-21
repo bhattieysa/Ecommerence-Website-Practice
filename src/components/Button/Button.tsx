@@ -3,7 +3,7 @@ import { Loader2 } from 'lucide-react';
 
 import { cn } from '@/utils/cn';
 
-import { buttonVariants } from '@/components/Button/ButtonVariants';
+import { ButtonVariants } from '@/components/Button/ButtonVariants';
 import type { ButtonProps } from './Button.types';
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -12,6 +12,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       variant,
       size,
+      layout,
       fullWidth,
       isLoading,
       disabled,
@@ -25,9 +26,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || isLoading}
         className={cn(
-          buttonVariants({
+          ButtonVariants({
             variant,
             size,
+            layout,
             fullWidth,
           }),
           className,
