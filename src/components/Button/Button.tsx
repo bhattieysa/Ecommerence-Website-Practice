@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { Loader2 } from 'lucide-react';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 
 import { ButtonVariants } from '@/components/Button/ButtonVariants';
 import type { ButtonProps } from './Button.types';

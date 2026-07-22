@@ -1,7 +1,7 @@
 import { Badge } from '@/components/badge';
 import { ProductImage } from '../ProductImage/ProductImage';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 
 import type { ProductCardData } from './ProductCard.types';
 import {

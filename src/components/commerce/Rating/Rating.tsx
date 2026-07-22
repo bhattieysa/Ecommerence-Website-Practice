@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from 'react';
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 import {
   DEFAULT_MAX_RATING,
   DEFAULT_PRECISION,
@@ -40,61 +40,61 @@ export function Rating({
 }: RatingProps) {
   const [internalValue, setInternalValue] = useState(defaultValue);
   const [hoverValue, setHoverValue] = useState<number | null>(null);
-  
+
   const isControlled = controlledValue !== undefined;
   const currentValue = isControlled ? controlledValue : internalValue;
   const displayValue = hoverValue !== null ? hoverValue : currentValue;
-  
+
   const normalizedRating = normalizePrecision(displayValue, max, precision);
-  
+
   const stars = generateStars(normalizedRating, max);
-  
+
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const ariaLabel = generateAriaLabel(normalizedRating, max, reviewCount);
-  
+
   const handleStarClick = useCallback(
     (starIndex: number) => {
       if (disabled || readonly || !interactive) return;
-      
+
       const newValue = starIndex + 1;
       const roundedValue = normalizePrecision(newValue, max, precision);
-      
+
       if (!isControlled) {
         setInternalValue(roundedValue);
       }
-      
+
       onChange?.(roundedValue);
     },
-    [disabled, readonly, interactive, isControlled, max, precision, onChange]
+    [disabled, readonly, interactive, isControlled, max, precision, onChange],
   );
-  
+
   const handleStarHover = useCallback(
     (starIndex: number) => {
       if (disabled || readonly || !interactive) return;
-      
+
       const newValue = starIndex + 1;
       const roundedValue = normalizePrecision(newValue, max, precision);
-      
+
       setHoverValue(roundedValue);
       onHover?.(roundedValue);
     },
-    [disabled, readonly, interactive, max, precision, onHover]
+    [disabled, readonly, interactive, max, precision, onHover],
   );
-  
+
   const handleHoverEnd = useCallback(() => {
     if (disabled || readonly || !interactive) return;
-    
+
     setHoverValue(null);
     onHoverEnd?.();
   }, [disabled, readonly, interactive, onHoverEnd]);
-  
+
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       if (disabled || readonly || !interactive) return;
-      
+
       const key = event.key;
-      
+
       if (
         key === RATING_KEYS.ARROW_LEFT ||
         key === RATING_KEYS.ARROW_RIGHT ||
@@ -106,26 +106,35 @@ export function Rating({
         key === RATING_KEYS.SPACE
       ) {
         event.preventDefault();
-        
+
         const newValue = calculateKeyboardNavigation(
           currentValue,
           key,
           max,
-          precision
+          precision,
         );
-        
+
         if (!isControlled) {
           setInternalValue(newValue);
         }
-        
+
         onChange?.(newValue);
       }
     },
-    [disabled, readonly, interactive, currentValue, max, precision, isControlled, onChange]
+    [
+      disabled,
+      readonly,
+      interactive,
+      currentValue,
+      max,
+      precision,
+      isControlled,
+      onChange,
+    ],
   );
-  
+
   const isInteractive = interactive && !readonly && !disabled;
-  
+
   return (
     <div
       ref={containerRef}
@@ -142,7 +151,7 @@ export function Rating({
           disabled,
           readonly,
         }),
-        className
+        className,
       )}
       {...props}
     >
@@ -159,32 +168,21 @@ export function Rating({
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
               'focus-visible:ring-yellow-400 dark:focus-visible:ring-yellow-500',
               'disabled:cursor-not-allowed disabled:opacity-50',
-              !interactive && 'cursor-default pointer-events-none'
+              !interactive && 'cursor-default pointer-events-none',
             )}
             aria-hidden="true"
           >
-            <RatingStar
-              state={star.state}
-              size={size}
-            />
+            <RatingStar state={star.state} size={size} />
           </button>
         ))}
       </div>
 
       {showValue && (
-        <RatingValue
-          value={normalizedRating}
-          size={size}
-          variant={variant}
-        />
+        <RatingValue value={normalizedRating} size={size} variant={variant} />
       )}
 
       {showCount && (
-        <RatingCount
-          count={reviewCount}
-          size={size}
-          variant={variant}
-        />
+        <RatingCount count={reviewCount} size={size} variant={variant} />
       )}
     </div>
   );

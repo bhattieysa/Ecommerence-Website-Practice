@@ -1,6 +1,6 @@
 import type { LabelHTMLAttributes } from 'react';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 
 interface InputLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   required?: boolean;

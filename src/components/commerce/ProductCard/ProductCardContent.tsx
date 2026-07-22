@@ -8,7 +8,7 @@ import {
   hasDiscount,
 } from '@/components/commerce/ProductCard/ProductCard.utils';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 
 interface ProductCardContentProps {
   product: ProductCardData;

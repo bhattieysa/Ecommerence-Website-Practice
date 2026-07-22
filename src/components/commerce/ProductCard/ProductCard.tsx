@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 import { useCallback } from 'react';
 import { PRODUCT_CARD_DEFAULTS } from './ProductCard.constants';
 import type { ProductCardProps } from './ProductCard.types';
@@ -59,7 +59,7 @@ export function ProductCard({
         onClick={handleProductClick}
         disabled={!onProductClick}
         className={cn(
-          'flex w-full flex-col text-left',
+          'flex w-full flex-1 flex-col text-left',
           onProductClick &&
             'cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
         )}

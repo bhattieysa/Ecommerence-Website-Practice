@@ -1,7 +1,7 @@
 import { ShoppingCart } from 'lucide-react';
 
 import { Button } from '@/components/Button';
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 
 import type { ProductCardData } from '@/components/commerce/ProductCard/ProductCard.types';
 import { PRODUCT_CARD_ARIA_LABELS } from '@/components/commerce/ProductCard/ProductCard.constants';

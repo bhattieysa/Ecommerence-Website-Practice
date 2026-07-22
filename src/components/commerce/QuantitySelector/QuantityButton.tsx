@@ -3,14 +3,16 @@ import { Minus, Plus } from 'lucide-react';
 import type { ComponentPropsWithoutRef } from 'react';
 
 import { IconButton } from '@/components/IconButton';
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 
 import { QUANTITY_ARIA_LABELS } from '@/components/commerce/QuantitySelector/Quantity.constants';
 
 type QuantityAction = 'increment' | 'decrement';
 
-interface QuantityButtonProps
-  extends Omit<ComponentPropsWithoutRef<typeof IconButton>, 'children'> {
+interface QuantityButtonProps extends Omit<
+  ComponentPropsWithoutRef<typeof IconButton>,
+  'children'
+> {
   action: QuantityAction;
 }
 

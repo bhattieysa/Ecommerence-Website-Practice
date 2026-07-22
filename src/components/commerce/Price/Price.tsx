@@ -1,14 +1,14 @@
-import { cn } from "@/utils/cn";
+import { cn } from '@/lib/utils/cn';
 
-import { Typography } from "@/components/Typography";
+import { Typography } from '@/components/Typography';
 
-import { COMMERCE_CONFIG } from "@/config/commerce";
-import { formatMoney, calculateDiscount } from "@/lib/money";
+import { COMMERCE_CONFIG } from '@/config/commerce';
+import { formatMoney, calculateDiscount } from '@/lib/money';
 
-import type { PriceProps } from "@/components/commerce/Price/Price.types";
+import type { PriceProps } from '@/components/commerce/Price/Price.types';
 
-import { PriceDiscount } from "@/components/commerce/Price/PriceDiscount";
-import { PriceOriginal } from "@/components/commerce/Price/PriceOriginal";
+import { PriceDiscount } from '@/components/commerce/Price/PriceDiscount';
+import { PriceOriginal } from '@/components/commerce/Price/PriceOriginal';
 
 export function Price({
   value,
@@ -21,55 +21,30 @@ export function Price({
   className,
   ...props
 }: PriceProps) {
-  const formattedPrice = formatMoney(
-    value,
-    currency,
-    { locale, fractionDigits }
-  );
+  const formattedPrice = formatMoney(value, currency, {
+    locale,
+    fractionDigits,
+  });
 
   const formattedOriginal =
     originalValue &&
-    formatMoney(
-      originalValue,
-      currency,
-      { locale, fractionDigits }
-    );
+    formatMoney(originalValue, currency, { locale, fractionDigits });
 
-  const discount =
-    originalValue &&
-    calculateDiscount(
-      originalValue,
-      value
-    );
+  const discount = originalValue && calculateDiscount(originalValue, value);
 
   return (
-    <div
-      className={cn(
-        "flex items-center gap-2",
-        className
-      )}
-      {...props}
-    >
-      <Typography
-        variant="heading5"
-        className="font-bold"
-      >
+    <div className={cn('flex items-center gap-2', className)} {...props}>
+      <Typography variant="heading5" className="font-bold">
         {formattedPrice}
       </Typography>
 
-      {showOriginalPrice &&
-        formattedOriginal && (
-          <PriceOriginal
-            value={formattedOriginal}
-          />
-        )}
+      {showOriginalPrice && formattedOriginal && (
+        <PriceOriginal value={formattedOriginal} />
+      )}
 
-      {showDiscount &&
-        discount && (
-          <PriceDiscount
-            percentage={discount.percentage}
-          />
-        )}
+      {showDiscount && discount && (
+        <PriceDiscount percentage={discount.percentage} />
+      )}
     </div>
   );
 }

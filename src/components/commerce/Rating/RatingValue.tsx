@@ -1,8 +1,7 @@
 import { Typography } from '@/components/Typography';
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 import { ratingValueVariants } from './ratingVariants';
 import type { RatingValueProps } from './Rating.types';
-
 
 export function RatingValue({
   value,
@@ -14,10 +13,7 @@ export function RatingValue({
   return (
     <Typography
       variant="bodySm"
-      className={cn(
-        ratingValueVariants({ size, variant }),
-        className
-      )}
+      className={cn(ratingValueVariants({ size, variant }), className)}
     >
       {value.toFixed(precision)}
     </Typography>

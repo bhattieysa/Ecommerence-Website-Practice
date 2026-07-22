@@ -2,12 +2,8 @@ import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 import type { VariantProps } from 'class-variance-authority';
 
-import { productCardVariants } from '@/components/commerce/ProductCard/ProductCardVariants';
+import { ProductCardVariants } from '@/components/commerce/ProductCard/ProductCardVariants';
 
-/**
- * UI model consumed by ProductCard.
- * Keep this independent from the backend Product model.
- */
 export interface ProductCardData {
   id: string | number;
 
@@ -33,20 +29,11 @@ export interface ProductCardData {
 export interface ProductCardProps
   extends
     Omit<ComponentPropsWithoutRef<'article'>, 'children'>,
-    VariantProps<typeof productCardVariants> {
-  /**
-   * Product displayed by the card.
-   */
+    VariantProps<typeof ProductCardVariants> {
   product: ProductCardData;
 
-  /**
-   * Enables hover effects.
-   */
   hoverable?: boolean;
 
-  /**
-   * Controls optional sections.
-   */
   showCategory?: boolean;
 
   showRating?: boolean;
@@ -55,15 +42,9 @@ export interface ProductCardProps
 
   showAddToCart?: boolean;
 
-  /**
-   * Event callbacks.
-   */
   onProductClick?: (product: ProductCardData) => void;
 
   onAddToCart?: (product: ProductCardData) => void;
 
-  /**
-   * Optional footer override.
-   */
   footer?: ReactNode;
 }

@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 import type { ContainerProps } from '@/components/Container/Container.types';
 import { containerVariants } from '@/components/Container/ContainerVariant';
 

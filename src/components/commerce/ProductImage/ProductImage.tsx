@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 import { ProductImageVariants } from '@/components/commerce/ProductImage/ProductImageVariants';
 import { ProductImageFallback } from '@/components/commerce/ProductImage/ProductImageFallback';
 import type { ProductImageProps } from '@/components/commerce/ProductImage/ ProductImage.types';

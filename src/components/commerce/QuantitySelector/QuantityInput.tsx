@@ -3,17 +3,16 @@ import { forwardRef, useEffect, useState } from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
 
 import { Input } from '@/components/Input/Input';
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 
 import { quantityInputVariants } from '@/components/commerce/QuantitySelector/QuantityVariants';
 import { parseQuantity } from '@/components/commerce/QuantitySelector/Quantity.utils';
 import { QUANTITY_ARIA_LABELS } from '@/components/commerce/QuantitySelector/Quantity.constants';
 
-interface QuantityInputProps
-  extends Omit<
-    ComponentPropsWithoutRef<typeof Input>,
-    'value' | 'onChange'
-  > {
+interface QuantityInputProps extends Omit<
+  ComponentPropsWithoutRef<typeof Input>,
+  'value' | 'onChange'
+> {
   value: number;
   onValueChange(value: number): void;
   min?: number;

@@ -1,5 +1,5 @@
 import { forwardRef, type ReactElement } from 'react';
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 import type { TypographyProps } from '@/components/Typography/Typography.types';
 import { TypographyVariants } from '@/components/Typography/TypographyVariants';
 
@@ -45,7 +45,8 @@ const defaultElement = {
   overline: 'span',
 } as const;
 
-type TypographyElement = HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement;
+type TypographyElement =
+  HTMLHeadingElement | HTMLParagraphElement | HTMLSpanElement;
 
 type TypographyComponent = (
   props: TypographyProps & {
@@ -75,7 +76,8 @@ const TypographyInner = forwardRef<TypographyElement, TypographyProps>(
     },
     ref,
   ) => {
-    const Component = as ?? defaultElement[variant as keyof typeof defaultElement];
+    const Component =
+      as ?? defaultElement[variant as keyof typeof defaultElement];
 
     return (
       <Component

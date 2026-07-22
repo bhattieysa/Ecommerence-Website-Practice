@@ -15,7 +15,10 @@ import { ProductImage } from '@/components/commerce/ProductImage/ProductImage';
 import { QuantitySelector } from '@/components/commerce/QuantitySelector/QuantitySelector';
 import { ProductCard } from '@/components/commerce/ProductCard';
 import type { ProductCardData } from '@/components/commerce/ProductCard';
+import { ProductGrid } from '@/components/commerce/ProductGrid/ProductGrid';
 import { products } from '@/data/products';
+import { AppNavbar } from '@/layouts/Navbar/AppNavbar';
+import { ProductSection } from '@/components/commerce/ProductSection/ProductSection';
 export function HomePage() {
   const [quantity, setQuantity] = useState(1);
 
@@ -144,20 +147,41 @@ export function HomePage() {
 
     /* Product Card Demo */
 
-    <main className="container mx-auto py-10">
-      <h1 className="mb-8 text-3xl font-bold">Product Card Demo</h1>
+    // <main className="container mx-auto py-10">
+    //   <h1 className="mb-8 text-3xl font-bold">Product Card Demo</h1>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onProductClick={(product) => console.log('Product:', product)}
-            onAddToCart={(product) => console.log('Add to cart:', product)}
-          />
-        ))}
-      </div>
-    </main>
+    //   <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    //     {products.map((product) => (
+    //       <ProductCard
+    //         key={product.id}
+    //         product={product}
+    //         onProductClick={(product) => console.log('Product:', product)}
+    //         onAddToCart={(product) => console.log('Add to cart:', product)}
+    //       />
+    //     ))}
+    //   </div>
+    // </main>
+
+    /* Product Card Grid */
+
+    /* App Navbar */
+
+    <>
+      <AppNavbar />{' '}
+      <main className="container mx-auto py-10">
+        <h1 className="mb-8 text-4xl font-bold">Product Grid Demo</h1>{' '}
+        <ProductGrid
+          products={products}
+          columns="4"
+          actions={{
+            onProductClick: (product) =>
+              console.log('Product clicked:', product),
+
+            onAddToCart: (product) => console.log('Added to cart:', product),
+          }}
+        />
+      </main>
+    </>
   );
 }
 

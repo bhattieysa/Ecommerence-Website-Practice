@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils/cn';
 
 import { QUANTITY_DEFAULTS } from './Quantity.constants';
 import { QuantityButton } from './QuantityButton';
