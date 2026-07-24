@@ -1,17 +1,18 @@
 import { cva } from 'class-variance-authority';
+import { SPACING } from '@/theme';
 
 export const sectionVariants = cva('w-full', {
   variants: {
     spacing: {
-      none: '',
-      sm: 'py-4',
-      md: 'py-8',
-      lg: 'py-12',
-      xl: 'py-16',
+      none: SPACING.none,
+      compact: SPACING.compact,
+      default: SPACING.default,
+      large: SPACING.large,
+      hero: SPACING.hero,
     },
   },
 
   defaultVariants: {
-    spacing: 'lg',
+    spacing: 'default',
   },
 });

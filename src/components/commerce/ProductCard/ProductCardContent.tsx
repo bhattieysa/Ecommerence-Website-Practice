@@ -38,11 +38,11 @@ export function ProductCardContent({
   const productHasDiscount = hasDiscount(product.price, product.originalPrice);
 
   return (
-    <div className={cn('flex', 'flex-col', 'gap-3', className)}>
+    <div className={cn('flex', 'flex-col', 'gap-2', className)}>
       {showCategory && product.category && (
         <Typography
-          variant="caption"
-          className="uppercase text-muted-foreground"
+          variant="overline"
+          color="muted"
         >
           {product.category}
         </Typography>
@@ -53,6 +53,7 @@ export function ProductCardContent({
         className="
           line-clamp-2
           transition-colors
+          duration-200
           group-hover:text-primary
         "
       >

@@ -1,10 +1,11 @@
 import { cva } from 'class-variance-authority';
+import { RADIUS } from '@/theme';
 
 export const ButtonVariants = cva(
   // Base Classes
   [
-    'inline-flex items-center justify-center rounded-lg font-medium',
-    'transition-colors duration-200',
+    'inline-flex items-center justify-center font-medium',
+    'transition-all duration-200 ease-in-out',
     'focus-visible:outline-none',
     'focus-visible:ring-2',
     'focus-visible:ring-offset-2',
@@ -16,7 +17,7 @@ export const ButtonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-blue-600 text-white hover:bg-blue-700 focus-visible:ring-blue-500',
+          'bg-primary text-white hover:bg-blue-700 focus-visible:ring-blue-500',
 
         secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300',
 
@@ -24,7 +25,7 @@ export const ButtonVariants = cva(
 
         ghost: 'hover:bg-gray-100',
 
-        destructive: 'bg-red-600 text-white hover:bg-red-700',
+        destructive: 'bg-danger text-white hover:bg-red-700',
       },
 
       size: {
@@ -48,32 +49,32 @@ export const ButtonVariants = cva(
       {
         layout: 'default',
         size: 'sm',
-        class: 'h-9 px-4',
+        class: `${RADIUS.button} h-9 px-4`,
       },
       {
         layout: 'default',
         size: 'md',
-        class: 'h-10 px-5',
+        class: `${RADIUS.button} h-10 px-5`,
       },
       {
         layout: 'default',
         size: 'lg',
-        class: 'h-12 px-6',
+        class: `${RADIUS.button} h-12 px-6`,
       },
       {
         layout: 'icon',
         size: 'sm',
-        class: 'h-9 w-9 p-0',
+        class: `${RADIUS.button} h-9 w-9 p-0`,
       },
       {
         layout: 'icon',
         size: 'md',
-        class: 'h-10 w-10 p-0',
+        class: `${RADIUS.button} h-10 w-10 p-0`,
       },
       {
         layout: 'icon',
         size: 'lg',
-        class: 'h-12 w-12 p-0',
+        class: `${RADIUS.button} h-12 w-12 p-0`,
       },
     ],
 

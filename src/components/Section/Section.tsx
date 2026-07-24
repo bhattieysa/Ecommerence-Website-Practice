@@ -16,11 +16,9 @@ export const Section = forwardRef<HTMLElement, SectionProps>(
         className={cn(sectionVariants({ spacing }), className)}
         {...props}
       >
-        <Container>
-          <SectionHeader title={title} subtitle={subtitle} action={action} />
+        <SectionHeader title={title} subtitle={subtitle} action={action} />
 
-          {children}
-        </Container>
+        {children}
       </section>
     );
   },

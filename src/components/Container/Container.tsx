@@ -4,15 +4,15 @@ import type { ContainerProps } from '@/components/Container/Container.types';
 import { containerVariants } from '@/components/Container/ContainerVariant';
 
 export const Container = forwardRef<HTMLDivElement, ContainerProps>(
-  ({ className, size, padding, children, ...props }, ref) => {
+  ({ className, size, ...props }, ref) => {
     return (
       <div
         ref={ref}
-        className={cn(containerVariants({ size, padding, className }))}
+        className={cn(containerVariants({ size }), className)}
         {...props}
-      >
-        {children}
-      </div>
+      />
     );
-  },
+  }
 );
+
+Container.displayName = "Container";

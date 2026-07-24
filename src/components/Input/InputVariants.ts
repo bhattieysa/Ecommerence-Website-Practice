@@ -1,8 +1,9 @@
 import { cva } from 'class-variance-authority';
+import { RADIUS } from '@/theme';
 
 export const inputVariants = cva(
   [
-    'flex w-full rounded-lg border transition-colors',
+    'flex w-full border transition-all duration-200 ease-in-out',
     'outline-none',
     'disabled:cursor-not-allowed',
     'disabled:opacity-50',
@@ -21,11 +22,11 @@ export const inputVariants = cva(
       },
 
       size: {
-        sm: 'h-9 px-3 text-sm',
+        sm: `${RADIUS.input} h-9 px-3 text-sm`,
 
-        md: 'h-11 px-4 text-base',
+        md: `${RADIUS.input} h-11 px-4 text-base`,
 
-        lg: 'h-12 px-5 text-lg',
+        lg: `${RADIUS.input} h-12 px-5 text-lg`,
       },
 
       hasError: {

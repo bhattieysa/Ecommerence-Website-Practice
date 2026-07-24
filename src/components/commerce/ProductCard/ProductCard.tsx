@@ -6,6 +6,7 @@ import {
   ProductCardVariants,
   ProductCardContentVariants,
 } from './ProductCardVariants';
+import { SHADOWS } from '@/theme';
 
 import { ProductCardImage } from './ProductCardImage';
 import { ProductCardContent } from './ProductCardContent';
@@ -49,7 +50,7 @@ export function ProductCard({
           orientation,
           radius,
         }),
-        hoverable && 'hover:-translate-y-1 hover:shadow-lg',
+        hoverable && `hover:-translate-y-1 ${SHADOWS.hover}`,
         className,
       )}
       {...props}

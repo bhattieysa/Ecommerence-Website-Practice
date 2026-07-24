@@ -4,6 +4,8 @@ import type { VariantProps } from 'class-variance-authority';
 
 import { NavbarVariants } from './NavbarVariants';
 
+import type { IconName } from '@/components/IconButton/IconButton.constants';
+
 export interface NavbarLink {
   label: string;
 
@@ -14,6 +16,8 @@ export interface NavbarLink {
   disabled?: boolean;
 
   external?: boolean;
+
+  icon?: IconName;
 }
 
 export interface NavbarProps

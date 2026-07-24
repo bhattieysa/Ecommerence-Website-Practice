@@ -1,4 +1,5 @@
 import { cva } from 'class-variance-authority';
+import { RADIUS } from '@/theme';
 
 export const ProductCardVariants = cva(
   [
@@ -7,13 +8,14 @@ export const ProductCardVariants = cva(
     'overflow-hidden',
 
     'border',
-    'border-border',
+    'border-gray-200',
 
-    'bg-card',
-    'text-card-foreground',
+    'bg-white',
+    'text-gray-900',
 
     'transition-all',
     'duration-300',
+    'ease-in-out',
   ],
   {
     variants: {
@@ -23,11 +25,11 @@ export const ProductCardVariants = cva(
       },
 
       radius: {
-        none: 'rounded-none',
-        sm: 'rounded-sm',
-        md: 'rounded-md',
-        lg: 'rounded-lg',
-        xl: 'rounded-xl',
+        none: RADIUS.none,
+        sm: RADIUS.sm,
+        md: RADIUS.md,
+        lg: RADIUS.card,
+        xl: RADIUS.cardSm,
       },
     },
 
@@ -37,8 +39,8 @@ export const ProductCardVariants = cva(
     },
   },
 );
-export const ProductCardContentVariants = cva('flex flex-1 flex-col gap-3 p-4');
+export const ProductCardContentVariants = cva('flex flex-1 flex-col gap-4 p-5');
 
 export const ProductCardFooterVariants = cva(
-  'mt-auto flex items-center justify-between pt-4',
+  'mt-auto flex items-center justify-between pt-4 px-5 pb-5',
 );

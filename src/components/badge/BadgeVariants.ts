@@ -1,12 +1,13 @@
 import { cva } from 'class-variance-authority';
+import { RADIUS } from '@/theme';
 
 export const badgeVariants = cva(
   [
     'inline-flex items-center justify-center',
-    'rounded-full',
     'font-medium',
     'whitespace-nowrap',
     'transition-colors',
+    'duration-200',
     'select-none',
   ],
   {
@@ -40,11 +41,11 @@ export const badgeVariants = cva(
       },
 
       shape: {
-        pill: 'rounded-full',
+        pill: RADIUS.badge,
 
-        rounded: 'rounded-md',
+        rounded: RADIUS.md,
 
-        square: 'rounded-none',
+        square: RADIUS.none,
       },
     },
 

@@ -1,84 +1,67 @@
 import { cva } from 'class-variance-authority';
+import { TYPOGRAPHY } from '@/theme';
 
 export const TypographyVariants = cva('', {
   variants: {
     variant: {
-      display: 'text-display font-extrabold tracking-tight',
+      // Display variants
+      displayXl: TYPOGRAPHY.displayXl,
+      display: TYPOGRAPHY.display,
 
-      h1: 'text-4xl md:text-5xl font-bold tracking-tight',
+      // Heading variants
+      h1: TYPOGRAPHY.h1,
+      h2: TYPOGRAPHY.h2,
+      h3: TYPOGRAPHY.h3,
+      h4: TYPOGRAPHY.h4,
+      h5: TYPOGRAPHY.h5,
+      h6: TYPOGRAPHY.h6,
 
-      h2: 'text-3xl md:text-4xl font-bold tracking-tight',
+      // Semantic variants
+      title: TYPOGRAPHY.title,
+      subtitle: TYPOGRAPHY.subtitle,
 
-      h3: 'text-2xl font-semibold',
+      // Body variants
+      bodyLg: TYPOGRAPHY.bodyLg,
+      body: TYPOGRAPHY.body,
+      bodySm: TYPOGRAPHY.bodySm,
 
-      h4: 'text-xl font-semibold',
+      // Small text variants
+      caption: TYPOGRAPHY.caption,
+      overline: TYPOGRAPHY.overline,
 
-      h5: 'text-lg font-semibold',
-
-      h6: 'text-base font-semibold',
-
-      bodyLg: 'text-lg leading-relaxed',
-
-      body: 'text-base leading-relaxed',
-
-      bodySm: 'text-sm leading-relaxed',
-
-      caption: 'text-xs',
-
-      overline: 'text-xs uppercase tracking-widest font-medium',
-
-      heading1: 'text-4xl md:text-5xl font-bold tracking-tight',
-
-      heading2: 'text-3xl md:text-4xl font-bold tracking-tight',
-
-      heading3: 'text-2xl font-semibold',
-
-      heading4: 'text-xl font-semibold',
-
-      heading5: 'text-lg font-semibold',
-
-      heading6: 'text-base font-semibold',
-
-      bodyLarge: 'text-lg leading-relaxed',
-
-      bodySmallAlias: 'text-sm leading-relaxed',
+      // Legacy aliases for backward compatibility
+      heading1: TYPOGRAPHY.h1,
+      heading2: TYPOGRAPHY.h2,
+      heading3: TYPOGRAPHY.h3,
+      heading4: TYPOGRAPHY.h4,
+      heading5: TYPOGRAPHY.h5,
+      heading6: TYPOGRAPHY.h6,
+      bodyLarge: TYPOGRAPHY.bodyLg,
+      bodySmallAlias: TYPOGRAPHY.bodySm,
     },
 
     weight: {
       light: 'font-light',
-
       normal: 'font-normal',
-
       medium: 'font-medium',
-
       semibold: 'font-semibold',
-
       bold: 'font-bold',
-
       extrabold: 'font-extrabold',
-
       black: 'font-black',
     },
-    
+
     color: {
       default: 'text-text',
-
       muted: 'text-text-muted',
-
       primary: 'text-primary',
-
       success: 'text-success',
-
       danger: 'text-danger',
-
       white: 'text-white',
     },
 
     align: {
       start: 'text-start',
-
       center: 'text-center',
-
       end: 'text-end',
     },
 
@@ -97,9 +80,7 @@ export const TypographyVariants = cva('', {
 
   defaultVariants: {
     variant: 'body',
-
     color: 'default',
-
     align: 'start',
   },
 });

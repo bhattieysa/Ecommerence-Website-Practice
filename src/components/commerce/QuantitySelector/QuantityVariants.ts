@@ -1,4 +1,5 @@
 import { cva } from 'class-variance-authority';
+import { RADIUS } from '@/theme';
 
 export const quantitySelectorVariants = cva(
   [
@@ -7,11 +8,11 @@ export const quantitySelectorVariants = cva(
     'justify-between',
     'overflow-hidden',
     'border',
-    'border-border',
-    'bg-background',
-    'transition-colors',
+    'border-gray-300',
+    'bg-white',
+    'transition-all duration-200 ease-in-out',
     'focus-within:ring-2',
-    'focus-within:ring-ring',
+    'focus-within:ring-primary',
     'focus-within:ring-offset-2',
   ],
   {
@@ -22,12 +23,12 @@ export const quantitySelectorVariants = cva(
         lg: 'h-12 gap-3 px-3',
       },
       radius: {
-        none: 'rounded-none',
-        sm: 'rounded-sm',
-        md: 'rounded-md',
-        lg: 'rounded-lg',
-        xl: 'rounded-xl',
-        full: 'rounded-full',
+        none: RADIUS.none,
+        sm: RADIUS.sm,
+        md: RADIUS.inputSm,
+        lg: RADIUS.input,
+        xl: RADIUS.xl,
+        full: RADIUS.badge,
       },
       disabled: {
         true: 'cursor-not-allowed opacity-50',

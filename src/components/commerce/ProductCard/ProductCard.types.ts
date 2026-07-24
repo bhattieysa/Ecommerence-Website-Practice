@@ -3,28 +3,9 @@ import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import type { VariantProps } from 'class-variance-authority';
 
 import { ProductCardVariants } from '@/components/commerce/ProductCard/ProductCardVariants';
+import type { Product } from '@/types/product';
 
-export interface ProductCardData {
-  id: string | number;
-
-  title: string;
-
-  image: string;
-
-  category?: string;
-
-  price: number;
-
-  originalPrice?: number;
-
-  rating?: number;
-
-  reviewCount?: number;
-
-  badge?: string;
-
-  inStock?: boolean;
-}
+export interface ProductCardData extends Product {}
 
 export interface ProductCardProps
   extends
