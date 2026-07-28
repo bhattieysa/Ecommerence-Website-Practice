@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 import { SPACING } from '@/theme';
 
-export const sectionVariants = cva('w-full', {
+export const sectionVariants = cva('w-full grid grid-cols-1 gap-8', {
   variants: {
     spacing: {
       none: SPACING.none,

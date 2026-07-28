@@ -1,4 +1,4 @@
-export const PRODUCT_GRID_COLUMNS = ['2', '3', '4', 'auto'] as const;
+export const PRODUCT_GRID_COLUMNS = ['2', '3', '4', '5', '6', 'auto'] as const;
 
 export type ProductGridColumn = (typeof PRODUCT_GRID_COLUMNS)[number];
 

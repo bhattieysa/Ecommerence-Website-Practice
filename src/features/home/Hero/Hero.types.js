@@ -1,0 +1,1 @@
+import { HeroVariants } from './HeroVariants';

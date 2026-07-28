@@ -1,34 +1,61 @@
-import type { HeroProps } from '@/features/home/Hero/Hero.types';
-import watchImage from '@/assets/images/hero/watch.png';
-import earbudsImage from '@/assets/images/hero/earbuds.png';
-import laptopImage from '@/assets/images/hero/laptop.png';
+import type { HeroProps } from '../features/home/Hero/Hero.types';
 
 export const HERO_SLIDES: HeroProps[] = [
   {
-    id: 'smart-watch',
-    badge: 'Best Deal Online',
-    title: 'SMART WEARABLE',
-    subtitle: 'UP TO 80% OFF',
-    description: 'Discover premium  wearables designed for everyday life.',
-    image: watchImage,
-    imageAlt: 'Smart Watch',
+    id: 'slide-1',
+    badge: 'Weekend Sale',
+
+    title: 'Smart Watch',
+
+    subtitle: 'Series 10',
+
+    description:
+      'Discover premium smart watches with health tracking and long battery life.',
+
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30',
+
+    imageAlt: 'Apple Watch',
+
+    alignment: 'left',
+
+    imagePosition: 'right',
   },
+
   {
-    id: 'wireless-earbuds',
-    badge: 'Latest Collection',
-    title: 'WIRELESS AUDIO',
-    subtitle: 'UP TO 60% OFF',
-    description: 'Experience immersive sound with our newest earbuds.',
-    image: earbudsImage,
+    id: 'slide-2',
+    badge: 'New Arrival',
+
+    title: 'Wireless Earbuds',
+
+    subtitle: 'Crystal Clear Audio',
+
+    description: 'Premium noise cancellation and immersive sound experience.',
+
+    image: 'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46',
+
     imageAlt: 'Wireless Earbuds',
+
+    alignment: 'left',
+
+    imagePosition: 'right',
   },
+
   {
-    id: 'gaming-laptop',
-    badge: 'Trending Now',
-    title: 'ULTRA PERFORMANCE',
-    subtitle: 'SAVE 40%',
-    description: 'Powerful laptops built for work and gaming.',
-    image: laptopImage,
+    id: 'slide-3',
+    badge: 'Up To 50% OFF',
+
+    title: 'Gaming Laptop',
+
+    subtitle: 'RTX Powered',
+
+    description: 'Experience desktop-level performance anywhere you go.',
+
+    image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853',
+
     imageAlt: 'Gaming Laptop',
+
+    alignment: 'left',
+
+    imagePosition: 'right',
   },
 ];

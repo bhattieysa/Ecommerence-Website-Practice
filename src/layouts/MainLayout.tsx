@@ -1,15 +1,12 @@
 import { Outlet } from 'react-router-dom';
 
+import { AppNavbar } from '@/layouts/Navbar';
+
 export function MainLayout() {
   return (
     <>
-      {/* Navbar */}
-
-      <main>
-        <Outlet />
-      </main>
-
-      {/* Footer */}
+      <AppNavbar />
+      <Outlet />
     </>
   );
 }

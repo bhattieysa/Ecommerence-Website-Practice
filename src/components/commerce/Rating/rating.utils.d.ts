@@ -1,0 +1,10 @@
+import type { RatingStarData, StarState } from './Rating.types';
+export declare function clampRating(value: number, max?: number): number;
+export declare function roundRating(value: number, precision?: number): number;
+export declare function normalizePrecision(value: number, max?: number, precision?: number): number;
+export declare function getStarState(rating: number, index: number): StarState;
+export declare function generateStars(rating: number, max?: number): RatingStarData[];
+export declare function calculatePercentage(rating: number, index: number): number;
+export declare function validateRating(value: number, max?: number): boolean;
+export declare function generateAriaLabel(value: number, max?: number, reviewCount?: number): string;
+export declare function calculateKeyboardNavigation(currentValue: number, key: string, max?: number, precision?: number): number;

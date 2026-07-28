@@ -1,0 +1,1 @@
+import { marketingLayoutVariants } from '../MarketingLayoutVariants';

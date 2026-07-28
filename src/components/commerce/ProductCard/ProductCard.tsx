@@ -6,7 +6,6 @@ import {
   ProductCardVariants,
   ProductCardContentVariants,
 } from './ProductCardVariants';
-import { SHADOWS } from '@/theme';
 
 import { ProductCardImage } from './ProductCardImage';
 import { ProductCardContent } from './ProductCardContent';
@@ -19,6 +18,8 @@ export function ProductCard({
 
   radius,
 
+  size,
+
   hoverable = true,
 
   showCategory = PRODUCT_CARD_DEFAULTS.showCategory,
@@ -26,6 +27,8 @@ export function ProductCard({
   showRating = PRODUCT_CARD_DEFAULTS.showRating,
 
   showOriginalPrice = PRODUCT_CARD_DEFAULTS.showOriginalPrice,
+
+  showSavings = false,
 
   showAddToCart = PRODUCT_CARD_DEFAULTS.showAddToCart,
 
@@ -43,14 +46,17 @@ export function ProductCard({
     onProductClick?.(product);
   }, [onProductClick, product]);
 
+  const isCompact = size === 'compact';
+
   return (
     <article
       className={cn(
         ProductCardVariants({
           orientation,
           radius,
+          size,
         }),
-        hoverable && `hover:-translate-y-1 ${SHADOWS.hover}`,
+        hoverable && !isCompact && 'hover:-translate-y-1 shadow-sm hover:shadow-lg',
         className,
       )}
       {...props}
@@ -65,14 +71,16 @@ export function ProductCard({
             'cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
         )}
       >
-        <ProductCardImage product={product} />
+        <ProductCardImage product={product} size={size} />
 
-        <div className={ProductCardContentVariants()}>
+        <div className={ProductCardContentVariants({ size })}>
           <ProductCardContent
             product={product}
+            size={size}
             showCategory={showCategory}
             showRating={showRating}
             showOriginalPrice={showOriginalPrice}
+            showSavings={showSavings}
           />
         </div>
       </button>

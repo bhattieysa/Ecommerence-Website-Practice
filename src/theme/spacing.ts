@@ -1,10 +1,10 @@
 export const SPACING = {
   // Section spacing
   none: 'py-0',
-  compact: 'py-4',
-  default: 'py-8',
-  large: 'py-12',
-  hero: 'py-6',
+  compact: 'py-6',
+  default: 'py-10',
+  large: 'py-16',
+  hero: 'py-8',
 
   // // Inner spacing
   // xs: 'p-1',

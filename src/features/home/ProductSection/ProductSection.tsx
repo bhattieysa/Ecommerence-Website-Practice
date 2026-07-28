@@ -16,6 +16,9 @@ export function ProductSection({
   products,
   action,
   limit,
+  gridColumns,
+  gridGap,
+  cardProps,
   className,
 }: ProductSectionProps) {
   const displayedProducts = products.slice(0, limit ?? products.length);
@@ -29,7 +32,12 @@ export function ProductSection({
         />
 
         <div className={productSectionGridWrapperVariants()}>
-          <ProductGrid products={displayedProducts} />
+          <ProductGrid
+            products={displayedProducts}
+            columns={gridColumns}
+            gap={gridGap}
+            cardProps={cardProps}
+          />
         </div>
       </div>
     </section>

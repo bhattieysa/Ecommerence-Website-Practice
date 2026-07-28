@@ -32,7 +32,7 @@ export function Navbar({
       {...props}
     >
       <Container size="full">
-        <div className="flex items-center justify-between gap-8 py-6 px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between gap-8  py-6 px-4 md:px-6 lg:px-8">
           {left && <div className="flex items-center gap-4">{left}</div>}
 
           {center && (

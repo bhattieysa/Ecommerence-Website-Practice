@@ -20,7 +20,7 @@ export interface CategorySectionProps {
 
   limit?: number;
 
-  columns?: 'auto' | 'four' | 'six';
+  columns?: 'auto' | 'two' | 'four' | 'six' | 'eight';
 
   categoryCardSize?: 'sm' | 'md' | 'lg';
 

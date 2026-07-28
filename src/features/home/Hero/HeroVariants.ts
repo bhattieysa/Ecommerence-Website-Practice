@@ -238,9 +238,9 @@ export const heroArrowContainerVariants = cva(
   {
     variants: {
       side: {
-        left: ['left-2', 'sm:left-4', 'lg:left-0', 'lg:-translate-x-1/2'],
+        left: ['left-4', 'sm:left-6', 'lg:left-8'],
 
-        right: ['right-2', 'sm:right-4', 'lg:right-0', 'lg:translate-x-1/2'],
+        right: ['right-4', 'sm:right-6', 'lg:right-8'],
       },
 
       visibility: {

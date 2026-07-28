@@ -1,0 +1,10 @@
+import type { FooterColumnData, FooterContact, FooterDownloadApp, FooterLink, FooterSocial } from './Footer.types';
+import type { ReactNode } from 'react';
+export declare const footerLogo: ReactNode;
+export declare const footerDescription: ReactNode;
+export declare const footerContacts: FooterContact[];
+export declare const footerDownloadApps: FooterDownloadApp[];
+export declare const footerColumns: FooterColumnData[];
+export declare const footerCopyright: string;
+export declare const footerBottomLinks: FooterLink[];
+export declare const footerSocials: FooterSocial[];

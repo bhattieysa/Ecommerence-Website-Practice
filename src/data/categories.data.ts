@@ -1,0 +1,113 @@
+export interface CategoryData {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+
+  image: string;
+  icon: string;
+
+  productCount: number;
+
+  color: string;
+
+  href: string;
+}
+
+export const CATEGORIES: CategoryData[] = [
+  {
+    id: 'electronics',
+    slug: 'electronics',
+    name: 'Electronics',
+    description: 'Phones, laptops, gadgets and more',
+    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9',
+    icon: 'laptop',
+    productCount: 245,
+    color: '#E8F3FF',
+    href: '/shop/electronics',
+  },
+
+  {
+    id: 'fashion',
+    slug: 'fashion',
+    name: 'Fashion',
+    description: 'Latest fashion collections',
+    image: 'https://images.unsplash.com/photo-1445205170230-053b83016050',
+    icon: 'shirt',
+    productCount: 186,
+    color: '#FFF3E8',
+    href: '/shop/fashion',
+  },
+
+  {
+    id: 'grocery',
+    slug: 'grocery',
+    name: 'Grocery',
+    description: 'Fresh groceries',
+    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e',
+    icon: 'shopping-cart',
+    productCount: 328,
+    color: '#E9FFF0',
+    href: '/shop/grocery',
+  },
+
+  {
+    id: 'beauty',
+    slug: 'beauty',
+    name: 'Beauty',
+    description: 'Beauty & skincare',
+    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9',
+    icon: 'sparkles',
+    productCount: 154,
+    color: '#FFF0F7',
+    href: '/shop/beauty',
+  },
+
+  {
+    id: 'home',
+    slug: 'home',
+    name: 'Home',
+    description: 'Furniture & decor',
+    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85',
+    icon: 'home',
+    productCount: 143,
+    color: '#F8F7FF',
+    href: '/shop/home',
+  },
+
+  {
+    id: 'kitchen',
+    slug: 'kitchen',
+    name: 'Kitchen',
+    description: 'Kitchen essentials',
+    image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba',
+    icon: 'chef-hat',
+    productCount: 101,
+    color: '#FFF8E7',
+    href: '/shop/kitchen',
+  },
+
+  {
+    id: 'sports',
+    slug: 'sports',
+    name: 'Sports',
+    description: 'Fitness & sports',
+    image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b',
+    icon: 'dumbbell',
+    productCount: 92,
+    color: '#EEF8FF',
+    href: '/shop/sports',
+  },
+
+  {
+    id: 'gaming',
+    slug: 'gaming',
+    name: 'Gaming',
+    description: 'Gaming accessories',
+    image: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8',
+    icon: 'gamepad-2',
+    productCount: 84,
+    color: '#F2EDFF',
+    href: '/shop/gaming',
+  },
+];

@@ -46,4 +46,4 @@ export const productSectionActionVariants = cva([
   'shrink-0',
 ]);
 
-export const productSectionGridWrapperVariants = cva(['w-full']);
+export const productSectionGridWrapperVariants = cva(['w-full', 'max-w-full']);

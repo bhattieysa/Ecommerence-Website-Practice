@@ -22,8 +22,10 @@ export const categoryGridVariants = cva(['grid', 'w-full', 'gap-4'], {
     },
     columns: {
       auto: 'grid-cols-auto',
-      four: 'grid-cols-4',
-      six: 'grid-cols-6',
+      two: 'grid-cols-2',
+      four: 'grid-cols-2 sm:grid-cols-4',
+      six: 'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+      eight: 'grid-cols-2 sm:grid-cols-4 lg:grid-cols-8',
     },
   },
   defaultVariants: {

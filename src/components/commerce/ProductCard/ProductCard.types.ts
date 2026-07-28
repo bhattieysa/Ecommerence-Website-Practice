@@ -21,6 +21,8 @@ export interface ProductCardProps
 
   showOriginalPrice?: boolean;
 
+  showSavings?: boolean;
+
   showAddToCart?: boolean;
 
   onProductClick?: (product: ProductCardData) => void;

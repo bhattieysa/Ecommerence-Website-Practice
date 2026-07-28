@@ -14,6 +14,8 @@ export function ProductGrid({
 
   actions,
 
+  cardProps,
+
   emptyState,
 
   columns = PRODUCT_GRID_DEFAULTS.columns,
@@ -53,6 +55,7 @@ export function ProductGrid({
           product={product}
           onProductClick={actions?.onProductClick}
           onAddToCart={actions?.onAddToCart}
+          {...cardProps}
         />
       ))}
     </div>
