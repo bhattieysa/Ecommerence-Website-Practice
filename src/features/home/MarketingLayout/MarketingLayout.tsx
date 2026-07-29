@@ -38,9 +38,9 @@ export function MarketingLayout({
     >
       {showDecoration && (
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
-
-          <div className="absolute bottom-0 right-12 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
+          <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
+          <div className="absolute -left-12 -bottom-12 h-32 w-32 rounded-full bg-white/5 blur-xl" />
+          <div className="absolute right-1/4 top-1/4 h-24 w-24 rounded-full bg-white/5 blur-lg" />
         </div>
       )}
 
@@ -56,7 +56,11 @@ export function MarketingLayoutContent({
   className?: string;
   children: React.ReactNode;
 }) {
-  return <div className={cn(marketingLayoutContentVariants(), className)}>{children}</div>;
+  return (
+    <div className={cn(marketingLayoutContentVariants(), className)}>
+      {children}
+    </div>
+  );
 }
 
 export function MarketingLayoutHeading({
@@ -66,7 +70,11 @@ export function MarketingLayoutHeading({
   className?: string;
   children: React.ReactNode;
 }) {
-  return <div className={cn(marketingLayoutHeadingVariants(), className)}>{children}</div>;
+  return (
+    <div className={cn(marketingLayoutHeadingVariants(), className)}>
+      {children}
+    </div>
+  );
 }
 
 export function MarketingLayoutImage({

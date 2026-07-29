@@ -38,15 +38,34 @@ export const featureCardVariants = cva(
     'duration-300',
 
     'hover:-translate-y-1',
+    'hover:shadow-xl',
   ],
   {
     variants: {
       variant: {
-        filled: ['bg-background', 'border', 'border-border'],
+        filled: [
+          'bg-gradient-to-br',
+          'from-white',
+          'to-gray-50',
+          'border',
+          'border-gray-100',
+          'shadow-md',
+        ],
 
-        outlined: ['border-2', 'border-border'],
+        outlined: [
+          'border-2',
+          'border-gray-200',
+          'bg-transparent',
+          'hover:border-gray-300',
+        ],
 
-        elevated: ['bg-card', 'shadow-sm', 'hover:shadow-lg'],
+        elevated: [
+          'bg-white',
+          'shadow-lg',
+          'hover:shadow-2xl',
+          'border',
+          'border-gray-100',
+        ],
       },
 
       size: {
@@ -57,7 +76,7 @@ export const featureCardVariants = cva(
     },
 
     defaultVariants: {
-      variant: 'filled',
+      variant: 'elevated',
       size: 'md',
     },
   },
@@ -71,20 +90,22 @@ export const featureIconVariants = cva(
 
     'rounded-full',
 
-    'bg-primary/10',
-    'text-primary',
+    'bg-gradient-to-br',
+    'from-blue-50',
+    'to-indigo-100',
 
     'transition-transform',
     'duration-300',
 
     'group-hover:scale-110',
+    'group-hover:rotate-3',
   ],
   {
     variants: {
       size: {
-        sm: 'h-12 w-12',
-        md: 'h-14 w-14',
-        lg: 'h-16 w-16',
+        sm: 'h-14 w-14',
+        md: 'h-16 w-16',
+        lg: 'h-20 w-20',
       },
     },
 

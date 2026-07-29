@@ -1,5 +1,4 @@
 import { Badge } from '@/components/badge';
-import { Button } from '@/components/Button';
 import { Typography } from '@/components/Typography';
 
 import { cn } from '@/lib/utils/cn';
@@ -12,11 +11,12 @@ import {
 } from '../MarketingLayout';
 
 import type { PromoBannerProps } from './PromoBanner.types';
-import { promoBannerActionVariants } from './PromoBannerVariants';
 
 export function PromoBanner({
   badge,
+  badgeVariant,
   title,
+  subtitle,
   description,
   image,
   imageAlt = '',
@@ -45,34 +45,49 @@ export function PromoBanner({
       <MarketingLayoutContent
         className={cn(alignment === 'center' ? 'items-center text-center' : '')}
       >
-        {badge && <Badge variant="secondary">{badge}</Badge>}
+        {badge && (
+          <Badge
+            variant={badgeVariant || 'sale'}
+            className="text-s font-bold py-5 rounded-xl w-35 h-10 px-0"
+          >
+            {badge}
+          </Badge>
+        )}
 
         <MarketingLayoutHeading>
-          <Typography variant="heading1" className="max-w-xl">
+          {/* {subtitle && (
+            <Typography
+              variant="body"
+              className={cn(
+                'text-sm font-medium mb-1',
+                variant === 'dark' ? 'text-white opacity-80' : 'opacity-80',
+              )}
+            >
+              {subtitle}
+            </Typography>
+          )} */}
+          <Typography
+            variant="heading1"
+            className={cn(
+              'max-w-xl text-2xl font-bold',
+              variant === 'dark' ? 'text-white' : '',
+            )}
+          >
             {title}
           </Typography>
 
           {description && (
-            <Typography variant="body" className="max-w-lg opacity-90">
+            <Typography
+              variant="body"
+              className={cn(
+                'max-w-lg text-sm',
+                variant === 'dark' ? 'text-white opacity-90' : 'opacity-90',
+              )}
+            >
               {description}
             </Typography>
           )}
         </MarketingLayoutHeading>
-
-        {primaryAction || secondaryAction ? (
-          <div className={promoBannerActionVariants()}>
-            {primaryAction}
-            {secondaryAction}
-          </div>
-        ) : (
-          <div className={promoBannerActionVariants()}>
-            <Button size="lg">Shop Now</Button>
-
-            <Button variant="outline" size="lg">
-              Learn More
-            </Button>
-          </div>
-        )}
       </MarketingLayoutContent>
 
       {image && <MarketingLayoutImage src={image} alt={imageAlt} />}

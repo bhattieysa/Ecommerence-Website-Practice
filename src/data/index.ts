@@ -4,8 +4,6 @@ export * from './categories.data';
 
 export * from './promotions.data';
 
-export * from './brands.data';
-
 export * from './features.data';
 
 export * from './footer.data';
@@ -19,6 +17,4 @@ export * from './beauty.data';
 export * from './home.data';
 export * from './kitchen.data';
 export * from './sports.data';
-export * from './gaming.data';
 export * from './accessories.data';
-export * from './books.data';

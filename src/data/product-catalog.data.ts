@@ -2,10 +2,8 @@ import type { Product, ProductCategory } from '@/types/product';
 
 import { accessoriesProducts } from './accessories.data';
 import { beautyProducts } from './beauty.data';
-import { booksProducts } from './books.data';
 import { electronicsProducts } from './electronics.data';
 import { fashionProducts } from './fashion.data';
-import { gamingProducts } from './gaming.data';
 import { groceryProducts } from './grocery.data';
 import { homeProducts } from './home.data';
 import { kitchenProducts } from './kitchen.data';
@@ -25,9 +23,7 @@ export const productCatalog: Product[] = [
   ...homeProducts,
   ...kitchenProducts,
   ...sportsProducts,
-  ...gamingProducts,
   ...accessoriesProducts,
-  ...booksProducts,
 ];
 
 /**

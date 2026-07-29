@@ -5,8 +5,11 @@ export interface PromoBannerProps extends Omit<
   'title'
 > {
   badge?: ReactNode;
+  badgeVariant?: 'sale' | 'iphone' | 'realme' | 'xiaomi';
 
   title: ReactNode;
+
+  subtitle?: ReactNode;
 
   description?: ReactNode;
 

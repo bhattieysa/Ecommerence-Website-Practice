@@ -8,7 +8,7 @@ export const categorySectionContentVariants = cva([
   'gap-8',
 ]);
 
-export const categoryGridVariants = cva(['grid', 'w-full', 'gap-4'], {
+export const categoryGridVariants = cva(['grid', 'w-full', 'gap-6'], {
   variants: {
     variant: {
       filled: ['bg-background', 'border-border'],
@@ -41,32 +41,26 @@ export const categoryCardVariants = cva(
     'flex',
     'flex-col',
     'items-center',
-    'justify-center',
+    'justify-between',
 
-    'rounded-2xl',
-
-    'border',
-    'border-border',
-
-    'bg-background',
+    'bg-transparent',
 
     'transition-all',
     'duration-300',
 
     'hover:-translate-y-1',
-    'hover:shadow-lg',
   ],
   {
     variants: {
       size: {
-        sm: 'p-4 gap-3',
-        md: 'p-5 gap-4',
-        lg: 'p-6 gap-5',
+        sm: 'gap-2',
+        md: 'gap-3',
+        lg: 'gap-4',
       },
       variant: {
-        filled: ['bg-background', 'border-border'],
-        elevated: ['bg-card', 'shadow-sm', 'hover:shadow-lg'],
-        outlined: ['bg-transparent', 'border-2'],
+        filled: [],
+        elevated: [],
+        outlined: [],
       },
     },
 
@@ -85,21 +79,25 @@ export const categoryImageWrapperVariants = cva(
 
     'rounded-full',
 
-    'bg-muted',
+    'border',
+    'border-gray-300',
+
+    'bg-white',
 
     'overflow-hidden',
 
-    'transition-transform',
+    'transition-all',
     'duration-300',
 
     'group-hover:scale-105',
+    'group-hover:border-blue-300',
   ],
   {
     variants: {
       size: {
-        sm: 'h-12 w-12',
-        md: 'h-16 w-16',
-        lg: 'h-20 w-20',
+        sm: 'h-22 w-22',
+        md: 'h-38 w-38',
+        lg: 'h-54 w-54',
       },
     },
 

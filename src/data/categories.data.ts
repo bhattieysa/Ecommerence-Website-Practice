@@ -20,7 +20,8 @@ export const CATEGORIES: CategoryData[] = [
     slug: 'electronics',
     name: 'Electronics',
     description: 'Phones, laptops, gadgets and more',
-    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNGbGhein0gJjcZrXfRYOxBexlSxFhZY3anYHmJcoevw&s=10',
     icon: 'laptop',
     productCount: 245,
     color: '#E8F3FF',
@@ -32,7 +33,8 @@ export const CATEGORIES: CategoryData[] = [
     slug: 'fashion',
     name: 'Fashion',
     description: 'Latest fashion collections',
-    image: 'https://images.unsplash.com/photo-1445205170230-053b83016050',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLTMP00CcKkk1FS7iSRbZikLqkA7DR0AUxqjZuDv2nDA&s=10',
     icon: 'shirt',
     productCount: 186,
     color: '#FFF3E8',
@@ -44,7 +46,8 @@ export const CATEGORIES: CategoryData[] = [
     slug: 'grocery',
     name: 'Grocery',
     description: 'Fresh groceries',
-    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0mq4CfnSjQYrilP9onnUeZgmiE4xMW7syhIazQlPneQ&s=10',
     icon: 'shopping-cart',
     productCount: 328,
     color: '#E9FFF0',
@@ -56,7 +59,8 @@ export const CATEGORIES: CategoryData[] = [
     slug: 'beauty',
     name: 'Beauty',
     description: 'Beauty & skincare',
-    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv4sUg5s5wXqVFRqkD1bCortDUioe24Drt5sAdqjV-mQ&s=10',
     icon: 'sparkles',
     productCount: 154,
     color: '#FFF0F7',
@@ -68,7 +72,8 @@ export const CATEGORIES: CategoryData[] = [
     slug: 'home',
     name: 'Home',
     description: 'Furniture & decor',
-    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB9Qd4SIT3SAo1IwCDa4GBYv_GYDYLEYR8GCbhz3nNfA&s=10',
     icon: 'home',
     productCount: 143,
     color: '#F8F7FF',
@@ -80,7 +85,8 @@ export const CATEGORIES: CategoryData[] = [
     slug: 'kitchen',
     name: 'Kitchen',
     description: 'Kitchen essentials',
-    image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVuW269q9F-KpSUaCVUsvlNGno-SAQYtjFxL3jckeCzg&s=10',
     icon: 'chef-hat',
     productCount: 101,
     color: '#FFF8E7',
@@ -92,7 +98,8 @@ export const CATEGORIES: CategoryData[] = [
     slug: 'sports',
     name: 'Sports',
     description: 'Fitness & sports',
-    image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR66NYLcHXuS4TWW9YiR41rPFWEGjQnT5Yolqf2Uxc0ow&s=10',
     icon: 'dumbbell',
     productCount: 92,
     color: '#EEF8FF',
@@ -104,7 +111,8 @@ export const CATEGORIES: CategoryData[] = [
     slug: 'gaming',
     name: 'Gaming',
     description: 'Gaming accessories',
-    image: 'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtVhVdYjg_KKCXb3ZyC9WWJE7CoU7JJPvHqqicAzapPg&s=10',
     icon: 'gamepad-2',
     productCount: 84,
     color: '#F2EDFF',

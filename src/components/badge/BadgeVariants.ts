@@ -30,6 +30,9 @@ export const badgeVariants = cva(
         ghost: 'bg-transparent text-gray-700',
 
         sale: 'bg-red-600 text-white',
+        iphone: 'bg-gray-700 text-white',
+        realme: 'bg-yellow-300 text-black',
+        xiaomi: 'bg-orange-300 text-black',
       },
 
       size: {

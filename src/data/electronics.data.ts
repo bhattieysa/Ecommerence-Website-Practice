@@ -11,7 +11,7 @@ export const electronicsProducts: Product[] = [
     category: 'electronics',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9',
+      src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsqx-9L0lMZSwhcrdB8byrEgWqnMNnqYazZU1Pdio4rg&s=10',
       alt: 'Apple iPhone 16 Pro',
     },
 
@@ -48,7 +48,7 @@ export const electronicsProducts: Product[] = [
     category: 'electronics',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97',
+      src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNGbGhein0gJjcZrXfRYOxBexlSxFhZY3anYHmJcoevw&s=10',
       alt: 'Samsung Galaxy S25 Ultra',
     },
 
@@ -80,12 +80,12 @@ export const electronicsProducts: Product[] = [
     sku: 'APL-MBA-M4',
     slug: 'macbook-air-m4',
     title: 'MacBook Air M4',
-    description: 'Lightweight laptop powered by Apple M4.',
+    description: 'Lightweight laptop powered by i M4.',
     brand: 'Apple',
     category: 'electronics',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1517336714739-489689fd1ca8',
+      src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4zvw8f4r9dm90Naz4PhpbDfO6_wFT1UaE-iulQ0Dv5w&s=10',
       alt: 'MacBook Air M4',
     },
 

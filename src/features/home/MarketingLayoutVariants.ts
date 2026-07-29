@@ -31,23 +31,11 @@ export const marketingLayoutVariants = cva(
           'text-primary-foreground',
         ],
 
-        dark: ['bg-slate-950', 'text-white'],
+        dark: ['bg-gray-800', 'text-white'],
 
-        sale: [
-          'bg-gradient-to-r',
-          'from-red-600',
-          'via-orange-500',
-          'to-yellow-500',
-          'text-white',
-        ],
+        sale: ['bg-yellow-100', 'text-gray-900'],
 
-        electronics: [
-          'bg-gradient-to-r',
-          'from-sky-700',
-          'via-blue-600',
-          'to-indigo-700',
-          'text-white',
-        ],
+        electronics: ['bg-orange-100', 'text-gray-900'],
 
         fashion: [
           'bg-gradient-to-r',
@@ -67,9 +55,9 @@ export const marketingLayoutVariants = cva(
       },
 
       size: {
-        sm: 'min-h-[220px] p-6',
-        md: 'min-h-[280px] p-8 lg:p-10',
-        lg: 'min-h-[360px] p-10 lg:p-14',
+        sm: 'min-h-[180px] p-6',
+        md: 'min-h-[200px] p-8 lg:p-10',
+        lg: 'min-h-[240px] p-10 lg:p-14',
       },
 
       rounded: {

@@ -184,6 +184,8 @@ export const heroImageElementVariants = cva([
 
   'w-full',
 
+  'rounded-[10px]',
+
   'max-w-[140px]',
   'sm:max-w-[180px]',
   'md:max-w-[240px]',
@@ -238,9 +240,9 @@ export const heroArrowContainerVariants = cva(
   {
     variants: {
       side: {
-        left: ['left-4', 'sm:left-6', 'lg:left-8'],
+        left: ['-left-10', 'sm:left-4', 'lg:-left-10'],
 
-        right: ['right-4', 'sm:right-6', 'lg:right-8'],
+        right: ['-right-10', 'sm:right-4', 'lg:-right-10'],
       },
 
       visibility: {

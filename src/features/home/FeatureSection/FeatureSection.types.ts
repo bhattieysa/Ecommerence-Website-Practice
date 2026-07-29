@@ -9,6 +9,8 @@ export interface Feature {
 
   description: string;
 
+  color?: string;
+
   href?: string;
 }
 

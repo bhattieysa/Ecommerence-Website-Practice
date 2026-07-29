@@ -31,6 +31,11 @@ export interface ProductImage {
   alt: string;
 }
 
+export interface ProductLogo {
+  src: string;
+  alt: string;
+}
+
 export interface ProductFlags {
   featured?: boolean;
   flashSale?: boolean;
@@ -67,4 +72,8 @@ export interface Product {
   stockQuantity: number;
 
   flags: ProductFlags;
+
+  logo?: ProductLogo;
+
+  href?: string;
 }

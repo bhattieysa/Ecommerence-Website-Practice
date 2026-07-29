@@ -26,6 +26,8 @@ export const ButtonVariants = cva(
         ghost: 'hover:bg-gray-100',
 
         destructive: 'bg-danger text-white hover:bg-red-700',
+
+        sale: 'bg-[#00E5FF] text-[#2B2D64] hover:bg-[#00c4db]',
       },
 
       size: {

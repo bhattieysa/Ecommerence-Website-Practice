@@ -1,1 +1,0 @@
-import { ProductSectionVariants } from './ ProductSectionVariants';

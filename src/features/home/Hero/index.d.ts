@@ -1,1 +1,0 @@
-export { HeroCarousel as Hero };

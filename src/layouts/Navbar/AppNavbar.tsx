@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ICONS } from '@/components/IconButton/IconButton.constants';
 import {
   Drawer,
@@ -173,28 +174,32 @@ export function AppNavbar() {
         right={
           <div className="flex items-center gap-3">
             <div className="hidden md:flex items-center gap-2">
+              <Link to="/auth/login" className="flex items-center gap-2">
+                <IconButton
+                  icon="user"
+                  aria-label="User Profile"
+                  variant="ghost"
+                  size="lg"
+                  className="text-blue-500 hover:text-blue-600"
+                />
+                <Typography
+                  variant="bodyLg"
+                  className="font-medium text-gray-600"
+                >
+                  Sign In
+                </Typography>
+              </Link>
+            </div>
+
+            <Link to="/auth/login">
               <IconButton
                 icon="user"
                 aria-label="User Profile"
                 variant="ghost"
                 size="lg"
-                className="text-blue-500 hover:text-blue-600"
+                className="md:hidden text-blue-500 hover:text-blue-600"
               />
-              <Typography
-                variant="bodyLg"
-                className="font-medium text-gray-600"
-              >
-                Sign In
-              </Typography>
-            </div>
-
-            <IconButton
-              icon="user"
-              aria-label="User Profile"
-              variant="ghost"
-              size="lg"
-              className="md:hidden text-blue-500 hover:text-blue-600"
-            />
+            </Link>
 
             <div className="hidden lg:flex items-center gap-2">
               <IconButton
@@ -222,19 +227,6 @@ export function AppNavbar() {
           </div>
         }
       />
-
-      <div className="md:hidden px-4 py-4 border-b bg-background">
-        <div className="relative">
-          <div className="absolute inset-y-0 left-3 flex items-center">
-            <ICONS.search className="h-6 w-6 text-blue-500" />
-          </div>
-
-          <Input
-            className="pl-10 bg-blue-50 border-blue-200 h-12"
-            placeholder={NAVBAR_LABELS.searchPlaceholder}
-          />
-        </div>
-      </div>
 
       <Drawer
         open={open}

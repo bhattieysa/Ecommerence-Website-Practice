@@ -1,1 +1,0 @@
-import { ProductGridVariants } from './ProductGridVariants';
