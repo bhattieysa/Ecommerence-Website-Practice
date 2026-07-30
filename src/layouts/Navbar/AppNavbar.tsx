@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { ICONS } from '@/components/IconButton/IconButton.constants';
 import {
   Drawer,
@@ -15,12 +14,14 @@ import {
 import { IconButton } from '@/components/IconButton';
 import { Input } from '@/components/Input';
 import { Typography } from '@/components/Typography';
+import { AuthModal } from '@/app/auth/authModels';
 
 import { APP_BRAND, NAVBAR_LABELS, NAVBAR_LINKS } from './Navbar.constants';
 import { Navbar } from './Navbar';
 
 export function AppNavbar() {
   const [open, setOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -174,7 +175,10 @@ export function AppNavbar() {
         right={
           <div className="flex items-center gap-3">
             <div className="hidden md:flex items-center gap-2">
-              <Link to="/auth/login" className="flex items-center gap-2">
+              <button
+                onClick={() => setIsAuthModalOpen(true)}
+                className="flex items-center gap-2"
+              >
                 <IconButton
                   icon="user"
                   aria-label="User Profile"
@@ -188,10 +192,10 @@ export function AppNavbar() {
                 >
                   Sign In
                 </Typography>
-              </Link>
+              </button>
             </div>
 
-            <Link to="/auth/login">
+            <button onClick={() => setIsAuthModalOpen(true)}>
               <IconButton
                 icon="user"
                 aria-label="User Profile"
@@ -199,7 +203,7 @@ export function AppNavbar() {
                 size="lg"
                 className="md:hidden text-blue-500 hover:text-blue-600"
               />
-            </Link>
+            </button>
 
             <div className="hidden lg:flex items-center gap-2">
               <IconButton
@@ -243,6 +247,11 @@ export function AppNavbar() {
       >
         {DrawerList}
       </Drawer>
+
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
     </>
   );
 }

@@ -21,7 +21,9 @@ const iosUrl = 'https://apple.com';
 const androidUrl = 'https://google.com';
 
 export const footerLogo: ReactNode = (
-  <Typography variant="heading1">MegaMart</Typography>
+  <Typography variant="heading2" className="text-white">
+    MegaMart
+  </Typography>
 );
 
 export const footerDescription: ReactNode = (
@@ -51,12 +53,12 @@ export const footerContacts: FooterContact[] = [
   {
     icon: <FaWhatsapp size={20} className="text-green-500" />,
     label: 'WhatsApp',
-    value: '+92 220-918-2132',
+    value: '+1 202-918-2132',
   },
   {
     icon: <FiPhoneCall size={20} className="text-blue-500" />,
     label: 'Call us',
-    value: '+92 220-918-2132',
+    value: '+1 202-918-2132',
   },
 ];
 
@@ -67,12 +69,12 @@ export const footerDownloadApps: FooterDownloadApp[] = [
     type: 'apple',
     button: (
       <div className="h-20 w-52">
-        <AppStoreButton url={iosUrl} theme="dark" height={80} width={208} />
+        <AppStoreButton url={iosUrl} theme="dark" height={65} width={175} />
       </div>
     ),
   },
   {
-    label: 'Google Play',
+    label: 'Play Store',
     href: androidUrl,
     type: 'google',
     button: (
@@ -80,8 +82,8 @@ export const footerDownloadApps: FooterDownloadApp[] = [
         <GooglePlayButton
           url={androidUrl}
           theme="dark"
-          height={80}
-          width={208}
+          height={65}
+          width={186}
         />
       </div>
     ),
@@ -111,7 +113,7 @@ export const footerColumns: FooterColumnData[] = [
       { label: 'Terms & Conditions', href: '#' },
       { label: 'FAQ', href: '#' },
       { label: 'Privacy Policy', href: '#' },
-      { label: 'E-wallet Policy', href: '#' },
+      { label: 'E-waste Policy', href: '#' },
       { label: 'Cancellation & Return Policy', href: '#' },
     ],
   },

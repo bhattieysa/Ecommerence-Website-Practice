@@ -37,105 +37,107 @@ export function HomePage() {
   );
 
   return (
-    <main className="pb-16">
-      {/* Category Dropdowns */}
-      <Section spacing="compact" className="bg-background">
-        <Container size="hero">
-          <div className="flex gap-3">
-            <CategoryDropdowns />
-          </div>
-        </Container>
-      </Section>
+    <main className="min-h-screen flex flex-col">
+      <div className="grow">
+        {/* Category Dropdowns */}
+        <Section spacing="compact" className="bg-background">
+          <Container size="hero">
+            <div className="flex gap-3">
+              <CategoryDropdowns />
+            </div>
+          </Container>
+        </Section>
 
-      {/* Hero */}
-      <Section spacing="hero" className="pt-6 bg-background">
-        <Container size="hero">
-          <HeroCarousel />
-        </Container>
-      </Section>
+        {/* Hero */}
+        <Section spacing="hero" className="pt-6 bg-background">
+          <Container size="hero">
+            <HeroCarousel />
+          </Container>
+        </Section>
 
-      {/* Smartphones */}
-      <Section spacing="large" className="bg-muted/20">
-        <Container size="hero">
-          <ProductSection
-            title="Grab the best deal on Electronics"
-            products={smartphoneProducts}
-            action={viewAllAction}
-            limit={5}
-            gridColumns="5"
-            gridGap="lg"
-          />
-        </Container>
-      </Section>
+        {/* Smartphones */}
+        <Section spacing="large" className="bg-muted/20">
+          <Container size="hero">
+            <ProductSection
+              title="Grab the best deal on Electronics"
+              products={smartphoneProducts}
+              action={viewAllAction}
+              limit={5}
+              gridColumns="5"
+              gridGap="lg"
+            />
+          </Container>
+        </Section>
 
-      {/* Fashion */}
-      <Section spacing="large" className="bg-muted/20">
-        <Container size="hero">
-          <ProductSection
-            title="Trending Fashion"
-            products={fashionItems}
-            action={viewAllAction}
-            limit={5}
-            gridColumns="5"
-            gridGap="lg"
-          />
-        </Container>
-      </Section>
+        {/* Fashion */}
+        <Section spacing="large" className="bg-muted/20">
+          <Container size="hero">
+            <ProductSection
+              title="Trending Fashion"
+              products={fashionItems}
+              action={viewAllAction}
+              limit={5}
+              gridColumns="5"
+              gridGap="lg"
+            />
+          </Container>
+        </Section>
 
-      {/* Beauty */}
-      <Section spacing="large" className="bg-muted/20">
-        <Container size="hero">
-          <ProductSection
-            title="Trending Beauty"
-            products={beautyItems}
-            action={viewAllAction}
-            limit={5}
-            gridColumns="5"
-            gridGap="lg"
-          />
-        </Container>
-      </Section>
+        {/* Beauty */}
+        <Section spacing="large" className="bg-muted/20">
+          <Container size="hero">
+            <ProductSection
+              title="Trending Beauty"
+              products={beautyItems}
+              action={viewAllAction}
+              limit={5}
+              gridColumns="5"
+              gridGap="lg"
+            />
+          </Container>
+        </Section>
 
-      {/* Promotions */}
-      <Section spacing="large" className="bg-background">
-        <Container size="hero">
-          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {PROMOTIONS.map((promotion) => (
-              <PromoBanner
-                key={promotion.id}
-                {...promotion}
-                variant={promotion.variant}
-                badgeVariant={promotion.badgeVariant}
-              />
-            ))}
-          </div>
-        </Container>
-      </Section>
+        {/* Promotions */}
+        <Section spacing="large" className="bg-background">
+          <Container size="hero">
+            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              {PROMOTIONS.map((promotion) => (
+                <PromoBanner
+                  key={promotion.id}
+                  {...promotion}
+                  variant={promotion.variant}
+                  badgeVariant={promotion.badgeVariant}
+                />
+              ))}
+            </div>
+          </Container>
+        </Section>
 
-      {/* Categories */}
-      <Section spacing="large" className="bg-background">
-        <Container size="hero">
-          <CategorySection
-            title="Shop From Top Categories"
-            categories={CATEGORIES}
-            action={viewAllAction}
-            limit={8}
-            columns="eight"
-            categoryCardSize="md"
-          />
-        </Container>
-      </Section>
+        {/* Categories */}
+        <Section spacing="large" className="bg-background">
+          <Container size="hero">
+            <CategorySection
+              title="Shop From Top Categories"
+              categories={CATEGORIES}
+              action={viewAllAction}
+              limit={8}
+              columns="eight"
+              categoryCardSize="md"
+            />
+          </Container>
+        </Section>
 
-      {/* Features */}
-      <Section spacing="large" className="bg-background">
-        <Container size="hero">
-          <FeatureSection
-            features={FEATURES}
-            columns="four"
-            cardProps={{ variant: 'elevated', size: 'md' }}
-          />
-        </Container>
-      </Section>
+        {/* Features */}
+        <Section spacing="large" className="bg-background">
+          <Container size="hero">
+            <FeatureSection
+              features={FEATURES}
+              columns="four"
+              cardProps={{ variant: 'elevated', size: 'md' }}
+            />
+          </Container>
+        </Section>
+      </div>
 
       {/* Footer */}
       <Footer

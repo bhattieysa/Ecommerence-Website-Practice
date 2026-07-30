@@ -4,6 +4,7 @@ import type { TypographyProps } from '@/components/Typography/Typography.types';
 import { TypographyVariants } from '@/components/Typography/TypographyVariants';
 
 const defaultElement = {
+  displayXl: 'h1',
   display: 'h1',
 
   h1: 'h1',
@@ -18,23 +19,24 @@ const defaultElement = {
 
   h6: 'h6',
 
+  title: 'h2',
+  subtitle: 'h3',
+
   heading1: 'h1',
-
   heading2: 'h2',
-
   heading3: 'h3',
-
   heading4: 'h4',
-
   heading5: 'h5',
-
   heading6: 'h6',
 
   bodyLg: 'p',
+  'body-lg': 'p',
 
   body: 'p',
+  'body-md': 'p',
 
   bodySm: 'p',
+  'body-sm': 'p',
 
   bodyLarge: 'p',
 

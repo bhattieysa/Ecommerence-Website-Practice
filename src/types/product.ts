@@ -44,6 +44,26 @@ export interface ProductFlags {
   trending?: boolean;
 }
 
+export interface ProductDelivery {
+  freeDelivery: boolean;
+  estimatedDate: string;
+  estimatedDays?: number;
+}
+
+export interface ProductDeliveryOption {
+  id: string;
+  title: string;
+  description: string;
+  icon?: React.ReactNode;
+}
+
+export interface ProductServices {
+  replacement: string;
+  warranty?: string;
+  securePayment: boolean;
+  originalProduct: boolean;
+}
+
 export interface Product {
   id: string;
 
@@ -76,4 +96,12 @@ export interface Product {
   logo?: ProductLogo;
 
   href?: string;
+
+  reviewCount?: number;
+
+  delivery?: ProductDelivery;
+
+  services?: ProductServices;
+
+  deliveryOptions?: ProductDeliveryOption[];
 }

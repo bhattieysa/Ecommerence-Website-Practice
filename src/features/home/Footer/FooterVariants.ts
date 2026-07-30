@@ -5,7 +5,7 @@ export const footerVariants = cva([
   'bg-sky-700',
   'text-white',
   'py-12',
-  'lg:py-16',
+  'lg:py -16',
 ]);
 
 export const footerContentVariants = cva([
@@ -49,7 +49,7 @@ export const footerDownloadVariants = cva([
   'flex',
   'flex-row',
   'gap-4',
-  'items-start',
+  'items-center',
 ]);
 
 export const footerSocialVariants = cva(['flex', 'gap-3', 'mt-5']);

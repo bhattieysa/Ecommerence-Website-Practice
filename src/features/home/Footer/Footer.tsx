@@ -36,6 +36,9 @@ export function Footer({
 
             {contacts && contacts.length > 0 && (
               <div className={footerContactVariants()}>
+                <Typography variant="heading5" className="text-white">
+                  Contact Us
+                </Typography>
                 {contacts.map((contact) => (
                   <div
                     key={contact.label}
@@ -56,6 +59,10 @@ export function Footer({
                 ))}
               </div>
             )}
+
+            <Typography variant="heading5" className="text-white">
+              Download App
+            </Typography>
 
             {downloadApps && downloadApps.length > 0 && (
               <div className={cn(footerDownloadVariants())}>
