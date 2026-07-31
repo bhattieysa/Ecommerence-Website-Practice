@@ -27,8 +27,8 @@ export function SlidingAuth({
 
   return (
     <div className={cn(baseStyles.container, sizeConfig.container, className)}>
-      <div className="relative h-full w-full">
-        {/* Login Form - Left Side */}
+      <div className="relative h-full w-full flex flex-col md:flex-row">
+        {/* Login Form */}
         <div
           className={cn(
             baseStyles.formPanel,
@@ -36,6 +36,7 @@ export function SlidingAuth({
             baseStyles.transition,
             animationDuration,
             !isSignUp ? baseStyles.active : baseStyles.inactive,
+            isSignUp ? 'hidden md:flex' : 'flex',
           )}
         >
           <h2 className={cn(baseStyles.heading, sizeConfig.heading)}>
@@ -46,22 +47,22 @@ export function SlidingAuth({
           </p>
 
           {/* Social Icons */}
-          <div className="mb-8 flex gap-4">
+          <div className="mb-6 md:mb-8 flex gap-4">
             <button className={cn(baseStyles.socialButton, theme.hover)}>
-              <FacebookIcon className="h-5 w-5" />
+              <FacebookIcon className="h-4 w-4 md:h-5 md:w-5" />
             </button>
             <button className={cn(baseStyles.socialButton, theme.hover)}>
-              <GoogleIcon className="h-5 w-5" />
+              <GoogleIcon className="h-4 w-4 md:h-5 md:w-5" />
             </button>
             <button className={cn(baseStyles.socialButton, theme.hover)}>
-              <LinkedinIcon className="h-5 w-5" />
+              <LinkedinIcon className="h-4 w-4 md:h-5 md:w-5" />
             </button>
           </div>
 
           <p className={baseStyles.divider}>or use your email</p>
 
           {/* Form Fields */}
-          <div className="w-full max-w-sm space-y-4">
+          <div className="w-full max-w-xs md:max-w-sm space-y-3 md:space-y-4">
             <input
               type="email"
               placeholder="Email"
@@ -77,7 +78,7 @@ export function SlidingAuth({
           <p
             className={cn(
               baseStyles.divider,
-              'mb-6 mt-4 cursor-pointer',
+              'mb-4 md:mb-6 mt-3 md:mt-4 cursor-pointer',
               theme.hover,
             )}
           >
@@ -96,9 +97,17 @@ export function SlidingAuth({
           >
             SIGN IN
           </button>
+
+          {/* Mobile toggle button */}
+          <button
+            onClick={() => setIsSignUp(true)}
+            className="md:hidden mt-4 text-sm text-blue-600 hover:underline"
+          >
+            Don't have an account? Sign up
+          </button>
         </div>
 
-        {/* Register Form - Right Side */}
+        {/* Register Form */}
         <div
           className={cn(
             baseStyles.formPanel,
@@ -106,6 +115,7 @@ export function SlidingAuth({
             baseStyles.transition,
             animationDuration,
             isSignUp ? baseStyles.active : baseStyles.inactive,
+            isSignUp ? 'flex' : 'hidden md:flex',
           )}
         >
           <h2 className={cn(baseStyles.heading, sizeConfig.heading)}>
@@ -116,15 +126,15 @@ export function SlidingAuth({
           </p>
 
           {/* Social Icons */}
-          <div className="mb-8 flex gap-4">
+          <div className="mb-6 md:mb-8 flex gap-4">
             <button className={cn(baseStyles.socialButton, theme.hover)}>
-              <FacebookIcon className="h-5 w-5" />
+              <FacebookIcon className="h-4 w-4 md:h-5 md:w-5" />
             </button>
             <button className={cn(baseStyles.socialButton, theme.hover)}>
-              <GoogleIcon className="h-5 w-5" />
+              <GoogleIcon className="h-4 w-4 md:h-5 md:w-5" />
             </button>
             <button className={cn(baseStyles.socialButton, theme.hover)}>
-              <LinkedinIcon className="h-5 w-5" />
+              <LinkedinIcon className="h-4 w-4 md:h-5 md:w-5" />
             </button>
           </div>
 
@@ -133,7 +143,7 @@ export function SlidingAuth({
           </p>
 
           {/* Form Fields */}
-          <div className="w-full max-w-sm space-y-4">
+          <div className="w-full max-w-xs md:max-w-sm space-y-3 md:space-y-4">
             <input
               type="text"
               placeholder="Name"
@@ -153,7 +163,7 @@ export function SlidingAuth({
 
           <button
             className={cn(
-              'mt-6',
+              'mt-4 md:mt-6',
               baseStyles.primaryButton,
               sizeConfig.button,
               theme.from,
@@ -164,9 +174,17 @@ export function SlidingAuth({
           >
             SIGN UP
           </button>
+
+          {/* Mobile toggle button */}
+          <button
+            onClick={() => setIsSignUp(false)}
+            className="md:hidden mt-4 text-sm text-blue-600 hover:underline"
+          >
+            Already have an account? Sign in
+          </button>
         </div>
 
-        {/* Green Panel - Slides left/right */}
+        {/* Green Panel - Slides left/right (desktop only) */}
         <div
           className={cn(
             baseStyles.greenPanel,

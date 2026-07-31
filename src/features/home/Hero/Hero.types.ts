@@ -15,4 +15,13 @@ export interface HeroProps
 
   image: string;
   imageAlt: string;
+  category?:
+    | 'electronics'
+    | 'fashion'
+    | 'grocery'
+    | 'beauty'
+    | 'home'
+    | 'kitchen'
+    | 'sports'
+    | 'gaming';
 }

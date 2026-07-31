@@ -2,17 +2,13 @@ import { Minus, Plus } from 'lucide-react';
 
 import type { ComponentPropsWithoutRef } from 'react';
 
-import { IconButton } from '@/components/IconButton';
 import { cn } from '@/lib/utils/cn';
 
 import { QUANTITY_ARIA_LABELS } from '@/components/commerce/QuantitySelector/Quantity.constants';
 
 type QuantityAction = 'increment' | 'decrement';
 
-interface QuantityButtonProps extends Omit<
-  ComponentPropsWithoutRef<typeof IconButton>,
-  'children'
-> {
+interface QuantityButtonProps extends ComponentPropsWithoutRef<'button'> {
   action: QuantityAction;
 }
 
@@ -21,9 +17,8 @@ export function QuantityButton({
   disabled = false,
   onClick,
   className,
-  size = 'sm',
   ...props
-}: QuantityButtonProps & { size?: 'sm' | 'md' | 'lg' }) {
+}: QuantityButtonProps) {
   const Icon = action === 'increment' ? Plus : Minus;
 
   const ariaLabel =
@@ -32,17 +27,18 @@ export function QuantityButton({
       : QUANTITY_ARIA_LABELS.decrement;
 
   return (
-    <IconButton
+    <button
       type="button"
-      variant="ghost"
-      size={size}
       disabled={disabled}
       aria-label={ariaLabel}
       onClick={onClick}
-      className={cn('rounded-none', className)}
+      className={cn(
+        'flex items-center justify-center p-1 hover:bg-gray-200/50 text-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
+        className,
+      )}
       {...props}
     >
       <Icon className="h-4 w-4" />
-    </IconButton>
+    </button>
   );
 }

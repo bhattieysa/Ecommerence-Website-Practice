@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 import { cn } from '@/lib/utils/cn';
@@ -11,18 +11,20 @@ export const Dropdown = forwardRef<HTMLButtonElement, DropdownProps>(
     { className, size, isActive, label, children, onActiveChange, ...props },
     ref,
   ) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [isClicked, setIsClicked] = useState(false);
+    const handleMouseEnter = () => {
+      onActiveChange?.(true);
+    };
 
-    const handleClick = () => {
-      setIsClicked(true);
-      setIsOpen(!isOpen);
-      onActiveChange?.(!isOpen);
-      setTimeout(() => setIsClicked(false), 150);
+    const handleMouseLeave = () => {
+      onActiveChange?.(false);
     };
 
     return (
-      <div className="relative">
+      <div
+        className="relative"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <button
           ref={ref}
           className={cn(
@@ -30,18 +32,17 @@ export const Dropdown = forwardRef<HTMLButtonElement, DropdownProps>(
               size,
               isActive,
             }),
-            isClicked && 'scale-95 transition-transform duration-100',
+            'transition-all duration-200 ease-in-out',
             className,
           )}
-          onClick={handleClick}
           {...props}
         >
           <span>{label}</span>
-          <ChevronDown className="h-4 w-4" />
+          <ChevronDown className="h-4 w-4 transition-transform duration-200" />
         </button>
 
-        {isOpen && (
-          <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-50">
+        {isActive && (
+          <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-48 animate-in fade-in slide-in-from-top-2 transition-all duration-300 ease-in-out">
             {children}
           </div>
         )}

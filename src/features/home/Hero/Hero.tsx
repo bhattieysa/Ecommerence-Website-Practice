@@ -28,6 +28,7 @@ export function Hero({
   size,
   alignment,
   imagePosition,
+  category,
   className,
   ...props
 }: HeroProps) {
@@ -38,6 +39,7 @@ export function Hero({
           size,
           alignment,
           imagePosition,
+          category,
         }),
 
         className,
@@ -87,11 +89,11 @@ export function Hero({
         </div>
 
         {/* Image */}
-        <div className={heroImageVariants()}>
+        <div className={cn(heroImageVariants())}>
           <img
             src={image}
             alt={imageAlt}
-            className={heroImageElementVariants()}
+            className={cn(heroImageElementVariants(), 'rounded-2xl')}
             loading="eager"
             draggable={false}
           />

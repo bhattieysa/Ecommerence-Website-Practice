@@ -66,8 +66,11 @@ export function createProduct({
     category,
 
     image: {
-      src: image,
-      alt: imageAlt ?? title,
+      thumbnail: {
+        src: image,
+        alt: imageAlt ?? title,
+      },
+      others: [],
     },
 
     price: {

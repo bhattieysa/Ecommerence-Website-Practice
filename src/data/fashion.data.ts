@@ -11,8 +11,11 @@ export const fashionProducts: Product[] = [
     category: 'fashion',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff',
-      alt: 'Nike Air Force 1',
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff',
+        alt: 'Nike Air Force 1',
+      },
+      others: [],
     },
 
     price: {
@@ -47,8 +50,11 @@ export const fashionProducts: Product[] = [
     category: 'fashion',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1543508282-6319a3e2621f',
-      alt: 'Adidas Ultraboost 24',
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1543508282-6319a3e2621f',
+        alt: 'Adidas Ultraboost 24',
+      },
+      others: [],
     },
 
     price: {
@@ -82,8 +88,11 @@ export const fashionProducts: Product[] = [
     category: 'fashion',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246',
-      alt: "Levi's 511 Jeans",
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246',
+        alt: "Levi's 511 Jeans",
+      },
+      others: [],
     },
 
     price: {
@@ -114,8 +123,11 @@ export const fashionProducts: Product[] = [
     category: 'fashion',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab',
-      alt: 'Uniqlo Hoodie',
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab',
+        alt: 'Uniqlo Hoodie',
+      },
+      others: [],
     },
 
     price: {
@@ -149,8 +161,11 @@ export const fashionProducts: Product[] = [
     category: 'fashion',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49',
-      alt: 'Timex Watch',
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49',
+        alt: 'Timex Watch',
+      },
+      others: [],
     },
 
     price: {

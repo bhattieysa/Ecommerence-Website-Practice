@@ -32,25 +32,25 @@ export const colorThemes = {
 // Size variants
 export const sizes = {
   sm: {
-    container: 'h-[400px]',
-    input: 'px-4 py-2 text-sm',
-    button: 'px-6 py-2 text-sm',
-    heading: 'text-2xl',
-    subtitle: 'text-base',
+    container: 'h-[500px] md:h-[600px]',
+    input: 'px-3 py-2 text-sm md:px-4 md:py-2',
+    button: 'px-4 py-2 text-sm md:px-6 md:py-2',
+    heading: 'text-xl md:text-2xl',
+    subtitle: 'text-sm md:text-base',
   },
   md: {
-    container: 'h-[600px]',
-    input: 'px-6 py-4 text-base',
-    button: 'px-8 py-4 text-lg',
-    heading: 'text-4xl',
-    subtitle: 'text-lg',
+    container: 'h-[600px] md:h-[700px]',
+    input: 'px-4 py-3 text-sm md:px-6 md:py-4 md:text-base',
+    button: 'px-6 py-3 text-sm md:px-8 md:py-4 md:text-lg',
+    heading: 'text-2xl md:text-4xl',
+    subtitle: 'text-sm md:text-lg',
   },
   lg: {
-    container: 'h-[700px]',
-    input: 'px-8 py-5 text-lg',
-    button: 'px-10 py-5 text-xl',
-    heading: 'text-5xl',
-    subtitle: 'text-xl',
+    container: 'h-[700px] md:h-[800px]',
+    input: 'px-6 py-4 text-base md:px-8 md:py-5 md:text-lg',
+    button: 'px-8 py-4 text-base md:px-10 md:py-5 md:text-xl',
+    heading: 'text-3xl md:text-5xl',
+    subtitle: 'text-base md:text-xl',
   },
 } as const;
 
@@ -64,26 +64,26 @@ export const animations = {
 // Base styles
 export const baseStyles = {
   container:
-    'relative w-full max-w-6xl overflow-hidden rounded-2xl bg-white shadow-2xl',
+    'relative w-full max-w-4xl md:max-w-6xl overflow-hidden rounded-2xl bg-white shadow-2xl',
   formPanel:
-    'absolute top-0 h-full w-1/2 flex flex-col items-center justify-center p-12',
+    'relative md:absolute top-0 h-full w-full md:w-1/2 flex flex-col items-center justify-center p-4 md:p-12',
   transition: 'transition-opacity ease-in-out',
   greenPanel:
-    'absolute top-0 h-full w-1/2 bg-gradient-to-br flex flex-col items-center justify-center text-white p-12 z-10',
+    'hidden md:flex absolute top-0 h-full w-full md:w-1/2 bg-gradient-to-br flex-col items-center justify-center text-white p-4 md:p-12 z-10',
   panelTransition: 'transition-all ease-in-out',
   heading: 'mb-2 font-bold text-gray-800',
-  subtitle: 'mb-8 text-gray-600',
+  subtitle: 'mb-6 md:mb-8 text-gray-600',
   socialButton:
-    'rounded-full border border-gray-300 p-4 text-gray-600 transition-all hover:bg-gray-100',
+    'rounded-full border border-gray-300 p-2 md:p-4 text-gray-600 transition-all hover:bg-gray-100',
   input:
     'w-full rounded-lg border border-gray-300 text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2',
   primaryButton:
-    'w-full max-w-sm rounded-lg bg-gradient-to-r font-semibold text-white transition-all hover:shadow-lg',
-  panelHeading: 'mb-4 font-bold',
-  panelSubtitle: 'mb-8 text-center',
+    'w-full max-w-xs md:max-w-sm rounded-lg bg-gradient-to-r font-semibold text-white transition-all hover:shadow-lg',
+  panelHeading: 'mb-2 md:mb-4 font-bold',
+  panelSubtitle: 'mb-6 md:mb-8 text-center',
   panelButton:
     'rounded-full border-2 border-white font-semibold text-white transition-all hover:bg-white hover:shadow-lg',
-  divider: 'mb-4 text-sm text-gray-500',
+  divider: 'mb-3 md:mb-4 text-xs md:text-sm text-gray-500',
   active: 'z-20 opacity-100',
   inactive: 'z-0 opacity-0 pointer-events-none',
   leftPanel: 'left-0',

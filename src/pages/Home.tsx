@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Container } from '@/components/Container';
 import { Section } from '@/components/Section';
 import { Button } from '@/components/Button';
@@ -5,7 +6,6 @@ import { CategoryDropdowns } from '@/components/Dropdown';
 import { PromoBanner } from '@/features/home';
 
 import {
-  BrandSection,
   CategorySection,
   FeatureSection,
   Footer,
@@ -40,13 +40,13 @@ export function HomePage() {
     <main className="min-h-screen flex flex-col">
       <div className="grow">
         {/* Category Dropdowns */}
-        <Section spacing="compact" className="bg-background">
+        {/* <Section spacing="compact" className="bg-background">
           <Container size="hero">
             <div className="flex gap-3">
               <CategoryDropdowns />
             </div>
           </Container>
-        </Section>
+        </Section> */}
 
         {/* Hero */}
         <Section spacing="hero" className="pt-6 bg-background">
@@ -102,12 +102,14 @@ export function HomePage() {
           <Container size="hero">
             <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {PROMOTIONS.map((promotion) => (
-                <PromoBanner
-                  key={promotion.id}
-                  {...promotion}
-                  variant={promotion.variant}
-                  badgeVariant={promotion.badgeVariant}
-                />
+                <Link key={promotion.id} to={promotion.href}>
+                  <PromoBanner
+                    {...promotion}
+                    variant={promotion.variant}
+                    badgeVariant={promotion.badgeVariant}
+                    primaryAction={promotion.buttonText}
+                  />
+                </Link>
               ))}
             </div>
           </Container>
@@ -140,14 +142,14 @@ export function HomePage() {
       </div>
 
       {/* Footer */}
-      <Footer
+      {/* <Footer
         logo={footerLogo}
         description={footerDescription}
         contacts={footerContacts}
         downloadApps={footerDownloadApps}
         columns={footerColumns}
         copyright={footerCopyright}
-      />
+      /> */}
     </main>
   );
 }

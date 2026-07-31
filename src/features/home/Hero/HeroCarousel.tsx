@@ -66,7 +66,7 @@ export function HeroCarousel() {
         <div className={heroTrackVariants()}>
           {HERO_SLIDES.map((slide) => (
             <div key={slide.id} className={heroSlideVariants()}>
-              <Hero {...slide} size="md" />
+              <Hero {...slide} size="sm" />
             </div>
           ))}
         </div>

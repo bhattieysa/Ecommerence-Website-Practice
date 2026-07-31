@@ -31,12 +31,10 @@ export function ProductCardImage({
   );
 
   return (
-    <div
-      className={cn(ProductCardImageVariants({ size }), className)}
-    >
+    <div className={cn(ProductCardImageVariants({ size }), className)}>
       <ProductImage
-        src={product.image.src}
-        alt={product.title}
+        src={product.image.thumbnail.src}
+        alt={product.image.thumbnail.alt}
         className={cn(
           'h-full w-full transition-all duration-300 ease-in-out group-hover:scale-105',
           isCompact ? 'object-contain p-3' : 'object-cover',

@@ -22,6 +22,8 @@ export interface ProductSectionProps {
 
   gridGap?: ProductGridGap;
 
+  cardProps?: ProductGridCardProps;
+
   className?: string;
 }
 

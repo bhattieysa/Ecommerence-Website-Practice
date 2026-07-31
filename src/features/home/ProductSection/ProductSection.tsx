@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { ProductGrid } from '@/components/commerce/ProductGrid/ProductGrid';
 
 import { cn } from '@/lib/utils/cn';
@@ -21,7 +22,13 @@ export function ProductSection({
   cardProps,
   className,
 }: ProductSectionProps) {
+  const navigate = useNavigate();
   const displayedProducts = products.slice(0, limit ?? products.length);
+
+  const handleProductClick = (product: { slug: string }) => {
+    navigate(`/products/${product.slug}`);
+  };
+
   return (
     <section className={cn(productSectionVariants(), className)}>
       <div className={productSectionContentVariants()}>
@@ -37,6 +44,7 @@ export function ProductSection({
             columns={gridColumns}
             gap={gridGap}
             cardProps={cardProps}
+            actions={{ onProductClick: handleProductClick }}
           />
         </div>
       </div>

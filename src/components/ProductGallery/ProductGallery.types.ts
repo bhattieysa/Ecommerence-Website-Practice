@@ -1,17 +1,13 @@
 import type { VariantProps } from 'class-variance-authority';
 
-import { productGalleryVariants } from './ProductGallery.variants';
+import type { ProductImage } from '@/types/product';
 
-export interface ProductGalleryImage {
-  id: string | number;
-  src: string;
-  alt: string;
-}
+import { productGalleryVariants } from './ProductGallery.variants';
 
 export interface ProductGalleryProps extends VariantProps<
   typeof productGalleryVariants
 > {
-  images: ProductGalleryImage[];
+  productImage: ProductImage;
 
   defaultImageIndex?: number;
 

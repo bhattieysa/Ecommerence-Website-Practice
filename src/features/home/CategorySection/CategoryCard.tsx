@@ -18,11 +18,11 @@ export function CategoryCard({
   variant,
   className,
 }: CategoryCardProps) {
-  const { name, image, productCount, href = '#' } = category;
+  const { name, image, productCount, slug } = category;
 
   return (
     <Link
-      to={href}
+      to={`/categories/${slug}`}
       className={cn(
         categoryCardVariants({
           size,

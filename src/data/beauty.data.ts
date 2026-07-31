@@ -11,8 +11,11 @@ export const beautyProducts: Product[] = [
     category: 'beauty',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be',
-      alt: 'CeraVe Cleanser',
+      thumbnail: {
+        src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgZ55B-zWddDZc4HEPLsjhYZ7__-ZDxEkw1oq93IYuiA&s=10',
+        alt: 'CeraVe Cleanser',
+      },
+      others: [],
     },
 
     price: {
@@ -47,8 +50,11 @@ export const beautyProducts: Product[] = [
     category: 'beauty',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1625772452859-1c03d5bf1137',
-      alt: 'Niacinamide Serum',
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1625772452859-1c03d5bf1137',
+        alt: 'Niacinamide Serum',
+      },
+      others: [],
     },
 
     price: {
@@ -81,8 +87,11 @@ export const beautyProducts: Product[] = [
     category: 'beauty',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348',
-      alt: 'Lipstick',
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348',
+        alt: 'Lipstick',
+      },
+      others: [],
     },
 
     price: {
@@ -116,8 +125,11 @@ export const beautyProducts: Product[] = [
     category: 'beauty',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd',
-      alt: 'Body Lotion',
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd',
+        alt: 'Body Lotion',
+      },
+      others: [],
     },
 
     price: {
@@ -148,8 +160,11 @@ export const beautyProducts: Product[] = [
     category: 'beauty',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883',
-      alt: 'Face Wash',
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883',
+        alt: 'Face Wash',
+      },
+      others: [],
     },
 
     price: {

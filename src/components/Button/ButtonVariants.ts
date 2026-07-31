@@ -28,6 +28,9 @@ export const ButtonVariants = cva(
         destructive: 'bg-danger text-white hover:bg-red-700',
 
         sale: 'bg-[#00E5FF] text-[#2B2D64] hover:bg-[#00c4db]',
+
+        wishlist:
+          'bg-pink-50 text-pink-600 border-2 border-pink-200 hover:bg-pink-100 hover:border-pink-400 hover:scale-105 active:scale-95 active:bg-pink-200',
       },
 
       size: {

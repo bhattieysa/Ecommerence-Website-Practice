@@ -11,8 +11,11 @@ export const groceryProducts: Product[] = [
     category: 'grocery',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38',
-      alt: 'Organic Raw Honey',
+      thumbnail: {
+        src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ0zW35J36nrjmIpxdPtr8tmPycPpiS8e3STI8J4QSug&s=10',
+        alt: 'Organic Raw Honey',
+      },
+      others: [],
     },
 
     price: {
@@ -47,8 +50,11 @@ export const groceryProducts: Product[] = [
     category: 'grocery',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1550583724-b2692b85b150',
-      alt: 'Almond Milk',
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1550583724-b2692b85b150',
+        alt: 'Almond Milk',
+      },
+      others: [],
     },
 
     price: {
@@ -82,8 +88,11 @@ export const groceryProducts: Product[] = [
     category: 'grocery',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085',
-      alt: 'Coffee Beans',
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085',
+        alt: 'Coffee Beans',
+      },
+      others: [],
     },
 
     price: {
@@ -114,8 +123,11 @@ export const groceryProducts: Product[] = [
     category: 'grocery',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1551462147-37885acc36f1',
-      alt: 'Italian Pasta',
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1551462147-37885acc36f1',
+        alt: 'Italian Pasta',
+      },
+      others: [],
     },
 
     price: {
@@ -146,8 +158,11 @@ export const groceryProducts: Product[] = [
     category: 'grocery',
 
     image: {
-      src: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5',
-      alt: 'Olive Oil',
+      thumbnail: {
+        src: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5',
+        alt: 'Olive Oil',
+      },
+      others: [],
     },
 
     price: {

@@ -1,5 +1,6 @@
 export interface Promotion {
   id: string;
+  slug: string;
   title: string;
   subtitle?: string;
   description: string;
@@ -18,6 +19,7 @@ export interface Promotion {
 export const PROMOTIONS: Promotion[] = [
   {
     id: 'iphone-promo',
+    slug: 'iphone-promo',
     badge: 'IPHONE',
     badgeVariant: 'iphone',
     title: 'UP to 80% OFF',
@@ -26,11 +28,12 @@ export const PROMOTIONS: Promotion[] = [
     image:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNGbGhein0gJjcZrXfRYOxBexlSxFhZY3anYHmJcoevw&s=10',
     buttonText: 'Shop Now',
-    href: '/shop/electronics',
+    href: '/products/apple-iphone-16-pro',
     variant: 'dark',
   },
   {
     id: 'realme-promo',
+    slug: 'realme-promo',
     badge: 'REALME',
     badgeVariant: 'realme',
     title: 'UP to 80% OFF',
@@ -39,11 +42,12 @@ export const PROMOTIONS: Promotion[] = [
     image:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4zvw8f4r9dm90Naz4PhpbDfO6_wFT1UaE-iulQ0Dv5w&s=10',
     buttonText: 'Shop Now',
-    href: '/shop/electronics',
+    href: '/products/realme-gt-5',
     variant: 'sale',
   },
   {
     id: 'xiaomi-promo',
+    slug: 'xiaomi-promo',
     badge: 'XIAOMI',
     badgeVariant: 'xiaomi',
     title: 'UP to 80% OFF',
@@ -52,7 +56,7 @@ export const PROMOTIONS: Promotion[] = [
     image:
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsqx-9L0lMZSwhcrdB8byrEgWqnMNnqYazZU1Pdio4rg&s=10',
     buttonText: 'Shop Now',
-    href: '/shop/electronics',
+    href: '/products/xiaomi-14-ultra',
     variant: 'electronics',
   },
 ];

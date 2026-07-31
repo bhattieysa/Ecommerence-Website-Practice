@@ -26,9 +26,13 @@ export interface ProductRating {
   reviewCount: number;
 }
 
-export interface ProductImage {
+export interface Image {
   src: string;
   alt: string;
+}
+export interface ProductImage {
+  thumbnail: Image;
+  others?: Image[];
 }
 
 export interface ProductLogo {
@@ -104,4 +108,10 @@ export interface Product {
   services?: ProductServices;
 
   deliveryOptions?: ProductDeliveryOption[];
+
+  dispatchTime?: string;
+
+  returnsInfo?: string;
+
+  codAvailable?: boolean;
 }

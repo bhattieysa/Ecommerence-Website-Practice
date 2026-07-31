@@ -1,15 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const HeroVariants = cva(
-  [
-    'relative',
-    'overflow-hidden',
-    'rounded-[28px]',
-    'bg-gradient-to-br',
-    'from-[#29335C]',
-    'via-[#252D52]',
-    'to-[#202748]',
-  ],
+  ['relative', 'overflow-hidden', 'rounded-[28px]', 'bg-gradient-to-br'],
   {
     variants: {
       size: {
@@ -55,6 +47,17 @@ export const HeroVariants = cva(
       imagePosition: {
         left: '',
         right: '',
+      },
+
+      category: {
+        electronics: ['from-[#1a365d]', 'via-[#2c5282]', 'to-[#2b6cb0]'],
+        fashion: ['from-[#742a2a]', 'via-[#9b2c2c]', 'to-[#c53030]'],
+        grocery: ['from-[#276749]', 'via-[#2f855a]', 'to-[#38a169]'],
+        beauty: ['from-[#702459]', 'via-[#97266d]', 'to-[#b83280]'],
+        home: ['from-[#44337a]', 'via-[#5b4b8a]', 'to-[#7c6db9]'],
+        kitchen: ['from-[#9c4221]', 'via-[#c05621]', 'to-[#dd6b20]'],
+        sports: ['from-[#1a365d]', 'via-[#2a4365]', 'to-[#3182ce]'],
+        gaming: ['from-[#1a202c]', 'via-[#2d3748]', 'to-[#4a5568]'],
       },
     },
 
@@ -177,6 +180,9 @@ export const heroImageVariants = cva([
 
   'mt-6',
   'lg:mt-0',
+
+  'overflow-hidden',
+  'rounded-xl',
 ]);
 
 export const heroImageElementVariants = cva([
@@ -184,13 +190,17 @@ export const heroImageElementVariants = cva([
 
   'w-full',
 
-  'rounded-[10px]',
+  'max-w-[280px]',
+  'sm:max-w-[350px]',
+  'md:max-w-[400px]',
+  'lg:max-w-[446px]',
+  'xl:max-w-[446px]',
 
-  'max-w-[140px]',
-  'sm:max-w-[180px]',
-  'md:max-w-[240px]',
-  'lg:max-w-[340px]',
-  'xl:max-w-[420px]',
+  'h-[188px]',
+  'sm:h-[235px]',
+  'md:h-[269px]',
+  'lg:h-[300px]',
+  'xl:h-[300px]',
 
   'object-contain',
 

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 
 import { ProductImage } from '@/components/commerce/ProductImage/ProductImage';
 import { cn } from '@/lib/utils/cn';
@@ -7,31 +7,61 @@ import { productGalleryVariants } from './ProductGallery.variants';
 import type { ProductGalleryProps } from './ProductGallery.types';
 
 export function ProductGallery({
-  images,
+  productImage,
   defaultImageIndex = 0,
   thumbnailPosition,
   className,
 }: ProductGalleryProps) {
-  const initialImageId = images[defaultImageIndex]?.id ?? images[0]?.id;
+  // Combine thumbnail and others into a single array
+  const allImages = useMemo(() => {
+    const images = [
+      { id: 'thumbnail', ...productImage.thumbnail },
+      ...(productImage.others?.map((img, index) => ({
+        id: `other-${index}`,
+        ...img,
+      })) || []),
+    ];
+    return images;
+  }, [productImage]);
+
+  const initialImageId = allImages[defaultImageIndex]?.id ?? allImages[0]?.id;
 
   const [selectedImageId, setSelectedImageId] = useState(initialImageId);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const imageRef = useRef<HTMLDivElement>(null);
 
   /**
    * Keep the selected image valid if the images array changes.
    */
   useEffect(() => {
-    if (!images.length) return;
+    if (!allImages.length) return;
 
-    const imageExists = images.some((image) => image.id === selectedImageId);
+    const imageExists = allImages.some((image) => image.id === selectedImageId);
 
     if (!imageExists) {
-      setSelectedImageId(images[0].id);
+      setSelectedImageId(allImages[0].id);
     }
-  }, [images, selectedImageId]);
+  }, [allImages, selectedImageId]);
 
   const selectedImage = useMemo(() => {
-    return images.find((image) => image.id === selectedImageId) ?? images[0];
-  }, [images, selectedImageId]);
+    return (
+      allImages.find((image) => image.id === selectedImageId) ?? allImages[0]
+    );
+  }, [allImages, selectedImageId]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!imageRef.current) return;
+
+    const rect = imageRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    setMousePosition({ x, y });
+  };
+
+  const handleMouseEnter = () => setIsZoomed(true);
+  const handleMouseLeave = () => setIsZoomed(false);
 
   if (!selectedImage) {
     return null;
@@ -48,17 +78,28 @@ export function ProductGallery({
     >
       {/* Main Image */}
 
-      <ProductImage
-        src={selectedImage.src}
-        alt={selectedImage.alt}
-        aspectRatio="square"
-        className="rounded-xl border"
-      />
+      <div
+        ref={imageRef}
+        className="relative overflow-hidden rounded-xl border border-gray-200"
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <img
+          src={selectedImage.src}
+          alt={selectedImage.alt}
+          className="h-full w-full object-cover transition-transform duration-200 ease-out"
+          style={{
+            transform: isZoomed ? 'scale(2)' : 'scale(1)',
+            transformOrigin: `${mousePosition.x}% ${mousePosition.y}%`,
+          }}
+        />
+      </div>
 
       {/* Thumbnails */}
 
       <div className="grid grid-cols-4 gap-4">
-        {images.map((image) => (
+        {allImages.map((image) => (
           <button
             key={image.id}
             type="button"
@@ -68,7 +109,7 @@ export function ProductGallery({
 
               image.id === selectedImageId
                 ? 'border-primary ring-2 ring-primary'
-                : 'border-border hover:border-primary/50',
+                : 'border-gray-200 hover:border-primary/50',
             )}
           >
             <ProductImage

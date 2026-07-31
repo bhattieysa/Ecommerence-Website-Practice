@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { Container } from '@/components/Container';
 import { Section } from '@/components/Section';
@@ -12,21 +14,38 @@ import { productPageVariants } from '@/features/product/ProductPage.variants';
 
 import type { ProductPageProps } from '@/features/product/ProductPage.types';
 
-export function ProductPage({ product, className }: ProductPageProps) {
+import { getProductBySlug } from '@/data';
+
+export function ProductPage({ className }: ProductPageProps) {
+  const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
 
+  const product = getProductBySlug(slug || '');
+
+  if (!product) {
+    return (
+      <Section spacing="large" className="p-20">
+        <Container size="hero">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
+            <button
+              onClick={() => navigate('/')}
+              className="text-primary hover:underline"
+            >
+              Return to Home
+            </button>
+          </div>
+        </Container>
+      </Section>
+    );
+  }
+
   return (
-    <Section spacing="large">
+    <Section spacing="large" className="p-20">
       <Container size="hero">
         <div className={cn(productPageVariants(), className)}>
-          <ProductGallery
-            images={[
-              {
-                ...product.image,
-                id: product.id,
-              },
-            ]}
-          />
+          <ProductGallery productImage={product.image} />
 
           <ProductInfo
             product={product}

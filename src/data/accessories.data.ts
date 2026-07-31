@@ -10,7 +10,8 @@ export const accessoriesProducts: Product[] = [
     description: 'Item tracker with Precision Finding.',
     brand: 'Apple',
     category: 'accessories',
-    image: 'https://images.unsplash.com/photo-1622445275576-721325763afe',
+    image:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn7MLLPmWPa9omfW9_X4LC_q0Mv3DOmd34knKP80Oq_Q&s=10',
     currentPrice: 29,
     originalPrice: 39,
     rating: 4.8,
