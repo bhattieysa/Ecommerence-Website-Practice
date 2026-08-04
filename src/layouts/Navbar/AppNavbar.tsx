@@ -15,6 +15,8 @@ import { IconButton } from '@/components/IconButton';
 import { Input } from '@/components/Input';
 import { Typography } from '@/components/Typography';
 import { AuthModal } from '@/app/auth/authModels';
+import { CartDrawer } from '@/components/CartDrawer/CartDrawer';
+import { useCart } from '@/contexts/CartContext';
 
 import { APP_BRAND, NAVBAR_LABELS, NAVBAR_LINKS } from './Navbar.constants';
 import { Navbar } from './Navbar';
@@ -22,6 +24,8 @@ import { Navbar } from './Navbar';
 export function AppNavbar() {
   const [open, setOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
+  const { getTotalItems } = useCart();
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -195,39 +199,55 @@ export function AppNavbar() {
               </button>
             </div>
 
-            <button onClick={() => setIsAuthModalOpen(true)}>
-              <IconButton
-                icon="user"
-                aria-label="User Profile"
-                variant="ghost"
-                size="lg"
-                className="md:hidden text-blue-500 hover:text-blue-600"
-              />
-            </button>
+            <IconButton
+              icon="user"
+              aria-label="User Profile"
+              variant="ghost"
+              size="lg"
+              className="md:hidden text-blue-500 hover:text-blue-600"
+              onClick={() => setIsAuthModalOpen(true)}
+            />
 
             <div className="hidden lg:flex items-center gap-2">
+              <div className="relative">
+                <IconButton
+                  icon="cart"
+                  aria-label="Shopping Cart"
+                  variant="ghost"
+                  size="lg"
+                  className="text-blue-500 hover:text-blue-600"
+                  onClick={() => setIsCartDrawerOpen(true)}
+                />
+                {getTotalItems() > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {getTotalItems()}
+                  </span>
+                )}
+              </div>
+              <Typography
+                variant="bodyLg"
+                className="font-medium text-gray-600 cursor-pointer"
+                onClick={() => setIsCartDrawerOpen(true)}
+              >
+                Cart
+              </Typography>
+            </div>
+
+            <div className="relative lg:hidden">
               <IconButton
                 icon="cart"
                 aria-label="Shopping Cart"
                 variant="ghost"
                 size="lg"
                 className="text-blue-500 hover:text-blue-600"
+                onClick={() => setIsCartDrawerOpen(true)}
               />
-              <Typography
-                variant="bodyLg"
-                className="font-medium text-gray-600"
-              >
-                Cart
-              </Typography>
+              {getTotalItems() > 0 && (
+                <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  {getTotalItems()}
+                </span>
+              )}
             </div>
-
-            <IconButton
-              icon="cart"
-              aria-label="Shopping Cart"
-              variant="ghost"
-              size="lg"
-              className="lg:hidden text-blue-500 hover:text-blue-600"
-            />
           </div>
         }
       />
@@ -251,6 +271,11 @@ export function AppNavbar() {
       <AuthModal
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
+      />
+
+      <CartDrawer
+        open={isCartDrawerOpen}
+        onClose={() => setIsCartDrawerOpen(false)}
       />
     </>
   );

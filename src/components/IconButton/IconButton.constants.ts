@@ -1,4 +1,3 @@
-
 import {
   Plus,
   Minus,
@@ -22,13 +21,13 @@ import {
   Info,
   Mail,
   Home,
+  CreditCard,
 } from 'lucide-react';
 
 export const ICON_BUTTON_DEFAULTS = {
   size: 'icon',
   variant: 'ghost',
 } as const;
-
 
 export const ICONS = {
   add: Plus,
@@ -73,6 +72,10 @@ export const ICONS = {
   about: Info,
 
   contact: Mail,
+
+  creditCard: CreditCard,
+
+  info: Info,
 } as const;
 
 export type IconName = keyof typeof ICONS;
