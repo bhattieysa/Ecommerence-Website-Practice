@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "files": [],
   "include": ["src"],
   "references": [
@@ -14,3 +15,34 @@
     "ignoreDeprecations": "5.0"
   }
 }
+=======
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    "strict": true,
+
+    "esModuleInterop": true,
+
+    "resolveJsonModule": true,
+
+    "allowSyntheticDefaultImports": true,
+
+    "skipLibCheck": true,
+
+    "forceConsistentCasingInFileNames": true,
+
+    "sourceMap": true,
+
+    "types": ["node"]
+  },
+
+  "include": ["src"],
+
+  "exclude": ["node_modules", "dist"]
+}
+>>>>>>> ce63661 (feat(backend): initialize Express API with TypeScript and project architecture)
