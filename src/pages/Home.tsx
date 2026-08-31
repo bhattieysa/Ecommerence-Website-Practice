@@ -1,53 +1,61 @@
-import { Link } from 'react-router-dom';
 import { Container } from '@/components/Container';
 import { Section } from '@/components/Section';
 import { Button } from '@/components/Button';
-import { CategoryDropdowns } from '@/components/Dropdown';
-import { PromoBanner } from '@/features/home';
+import { FEATURES } from '@/features/home/FeatureSection/FeatureCard';
+import { CategorySection, HeroCarousel, ProductSection, FeatureSection, PromoBanner } from '@/features/home';
 
-import {
-  CategorySection,
-  FeatureSection,
-  Footer,
-  HeroCarousel,
-  ProductSection,
-} from '@/features/home';
-
-import {
-  footerColumns,
-  footerContacts,
-  footerCopyright,
-  footerDescription,
-  footerDownloadApps,
-  footerLogo,
-} from '@/features/home/Footer/Footer.data';
-
-import { CATEGORIES, FEATURES, getProductsByCategory } from '@/data';
-
-import { PROMOTIONS } from '@/data/promotions.data';
+import { useProducts } from '@/hooks/useProducts';
+import { useCategories } from '@/hooks/useCategories';
+import { useBanners } from '@/hooks/useBanners';
+import type { Product } from '@/types/product';
+import { Link } from 'react-router-dom';
 
 export function HomePage() {
-  const smartphoneProducts = getProductsByCategory('electronics');
-  const fashionItems = getProductsByCategory('fashion');
-  const beautyItems = getProductsByCategory('beauty');
-  const viewAllAction = (
-    <Button variant="ghost" size="sm" className="text-primary font-medium">
-      View All &gt;
-    </Button>
+  const { data: categoriesData } = useCategories();
+  const categories = categoriesData || [];
+
+  const { data: bannersData } = useBanners();
+  const banners = bannersData?.filter((b: any) => b.isActive) || [];
+
+  // Map backend banners to three types based on position
+  const bannerTypes = ['Featured', 'BestSeller', 'Premium'] as const;
+  const mappedBanners = banners.slice(0, 3).map((banner: any, index: number) => ({
+    ...banner,
+    badgeVariant: bannerTypes[index] || 'Featured',
+    variant: bannerTypes[index] || 'Featured',
+  }));
+
+  // Get products for each category dynamically
+  const electronicsCategory = categories.find(c => c.slug === 'electronics');
+  const fashionCategory = categories.find(c => c.slug === 'fashion');
+  const beautyCategory = categories.find(c => c.slug === 'beauty');
+
+  // Only fetch products when categories are loaded
+  const { data: electronicsData } = useProducts(
+    electronicsCategory?.id ? { categoryId: electronicsCategory.id, limit: 5 } : undefined
+  );
+  const { data: fashionData } = useProducts(
+    fashionCategory?.id ? { categoryId: fashionCategory.id, limit: 5 } : undefined
+  );
+  const { data: beautyData } = useProducts(
+    beautyCategory?.id ? { categoryId: beautyCategory.id, limit: 5 } : undefined
+  );
+
+  const electronicProducts: Product[] = electronicsData || [];
+  const fashionItems: Product[] = fashionData || [];
+  const beautyItems: Product[] = beautyData || [];
+
+  const viewAllAction = (to: string) => (
+    <Link to={to} className="inline-block">
+      <Button variant="ghost" size="sm" className="text-primary font-medium">
+        View All &gt;
+      </Button>
+    </Link>
   );
 
   return (
     <main className="min-h-screen flex flex-col">
       <div className="grow">
-        {/* Category Dropdowns */}
-        {/* <Section spacing="compact" className="bg-background">
-          <Container size="hero">
-            <div className="flex gap-3">
-              <CategoryDropdowns />
-            </div>
-          </Container>
-        </Section> */}
-
         {/* Hero */}
         <Section spacing="hero" className="pt-6 bg-background">
           <Container size="hero">
@@ -60,8 +68,8 @@ export function HomePage() {
           <Container size="hero">
             <ProductSection
               title="Grab the best deal on Electronics"
-              products={smartphoneProducts}
-              action={viewAllAction}
+              products={electronicProducts}
+              action={viewAllAction(electronicsCategory ? `/products?categoryId=${electronicsCategory.id}` : '/products')}
               limit={5}
               gridColumns="5"
               gridGap="lg"
@@ -75,7 +83,7 @@ export function HomePage() {
             <ProductSection
               title="Trending Fashion"
               products={fashionItems}
-              action={viewAllAction}
+              action={viewAllAction(fashionCategory ? `/products?categoryId=${fashionCategory.id}` : '/products')}
               limit={5}
               gridColumns="5"
               gridGap="lg"
@@ -89,7 +97,7 @@ export function HomePage() {
             <ProductSection
               title="Trending Beauty"
               products={beautyItems}
-              action={viewAllAction}
+              action={viewAllAction(beautyCategory ? `/products?categoryId=${beautyCategory.id}` : '/products')}
               limit={5}
               gridColumns="5"
               gridGap="lg"
@@ -98,33 +106,41 @@ export function HomePage() {
         </Section>
 
         {/* Promotions */}
-        <Section spacing="large" className="bg-background">
-          <Container size="hero">
-            <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {PROMOTIONS.map((promotion) => (
-                <Link key={promotion.id} to={promotion.href}>
+        {mappedBanners.length > 0 && (
+          <Section spacing="large" className="bg-background">
+            <Container size="hero">
+              <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {mappedBanners.map((banner) => (
                   <PromoBanner
-                    {...promotion}
-                    variant={promotion.variant}
-                    badgeVariant={promotion.badgeVariant}
-                    primaryAction={promotion.buttonText}
+                    key={banner.id}
+                    badge={banner.badge}
+                    badgeVariant={banner.badgeVariant}
+                    title={banner.title}
+                    subtitle={banner.subtitle}
+                    description={banner.description}
+                    image={banner.image}
+                    imageAlt={banner.imageAlt}
+                    imagePosition={banner.imagePosition as 'left' | 'right' || 'right'}
+                    primaryAction={banner.badge}
+                    size="sm"
+                    variant={banner.variant}
                   />
-                </Link>
-              ))}
-            </div>
-          </Container>
-        </Section>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
 
         {/* Categories */}
         <Section spacing="large" className="bg-background">
           <Container size="hero">
             <CategorySection
               title="Shop From Top Categories"
-              categories={CATEGORIES}
-              action={viewAllAction}
-              limit={8}
-              columns="eight"
-              categoryCardSize="md"
+              categories={categories || []}
+              action={viewAllAction('/categories')}
+              limit={6}
+              columns="six"
+              categoryCardSize="lg"
             />
           </Container>
         </Section>
@@ -133,23 +149,13 @@ export function HomePage() {
         <Section spacing="large" className="bg-background">
           <Container size="hero">
             <FeatureSection
-              features={FEATURES}
               columns="four"
               cardProps={{ variant: 'elevated', size: 'md' }}
+              features={FEATURES}
             />
           </Container>
         </Section>
       </div>
-
-      {/* Footer */}
-      {/* <Footer
-        logo={footerLogo}
-        description={footerDescription}
-        contacts={footerContacts}
-        downloadApps={footerDownloadApps}
-        columns={footerColumns}
-        copyright={footerCopyright}
-      /> */}
     </main>
   );
 }

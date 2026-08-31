@@ -26,9 +26,12 @@ export function ProductInfo({
   const [pincode, setPincode] = useState('');
   const [isDeliverable, setIsDeliverable] = useState<boolean | null>(null);
 
+  const currentPrice = typeof product.price === 'number' ? product.price : product.price.current;
+  const originalPrice = product.compareAtPrice || (typeof product.price === 'object' ? product.price.original : undefined);
+  
   const discount = calculateDiscountPercentage(
-    product.price.current,
-    product.price.original,
+    currentPrice,
+    originalPrice,
   );
 
   const checkDelivery = () => {
@@ -92,18 +95,17 @@ export function ProductInfo({
       <section className="space-y-5 border-y border-gray-200 py-6">
         <div className="flex flex-wrap items-center gap-3">
           <Typography variant="h3" className="font-bold text-black">
-            ${product.price.current.toFixed(2)}
+            ${currentPrice.toFixed(2)}
           </Typography>
 
-          {product.price.original &&
-            product.price.original > product.price.current && (
-              <Typography
-                variant="body-lg"
-                className="text-muted-foreground line-through"
-              >
-                ${product.price.original.toFixed(2)}
-              </Typography>
-            )}
+          {originalPrice && originalPrice > currentPrice && (
+            <Typography
+              variant="body-lg"
+              className="text-muted-foreground line-through"
+            >
+              ${originalPrice.toFixed(2)}
+            </Typography>
+          )}
 
           {discount && (
             <Badge variant="info" size="md">

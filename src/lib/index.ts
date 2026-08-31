@@ -4,4 +4,4 @@ export {
   formatMoney,
   formatMoneyObject,
   calculateDiscount,
-} from "./money";
+} from './money';

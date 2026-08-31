@@ -5,7 +5,7 @@ export interface PromoBannerProps extends Omit<
   'title'
 > {
   badge?: ReactNode;
-  badgeVariant?: 'sale' | 'iphone' | 'realme' | 'xiaomi';
+  badgeVariant?: 'Featured' | 'BestSeller' | 'Premium';
 
   title: ReactNode;
 
@@ -28,13 +28,7 @@ export interface PromoBannerProps extends Omit<
   size?: 'sm' | 'md' | 'lg';
 
   variant?:
-    | 'default'
-    | 'gradient'
-    | 'dark'
-    | 'sale'
-    | 'electronics'
-    | 'fashion'
-    | 'gaming';
+   'Featured' | 'BestSeller' | 'Premium';
 
   rounded?: 'none' | 'md' | 'lg' | 'xl';
 

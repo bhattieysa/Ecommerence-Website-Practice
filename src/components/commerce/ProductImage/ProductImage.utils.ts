@@ -1,9 +1,12 @@
 import { PRODUCT_IMAGE_DEFAULTS } from '@/components/commerce/ProductImage/ProductImage.constants';
-import {PRODUCT_IMAGE_OBJECT_FIT} from '@/components/commerce/ProductImage/ProductImage.constants';
+import { PRODUCT_IMAGE_OBJECT_FIT } from '@/components/commerce/ProductImage/ProductImage.constants';
 /**
  * Maps object-fit variants to Tailwind classes.
  */
-export const objectFitClasses : Record<keyof typeof PRODUCT_IMAGE_OBJECT_FIT, string> = {
+export const objectFitClasses: Record<
+  keyof typeof PRODUCT_IMAGE_OBJECT_FIT,
+  string
+> = {
   cover: 'object-cover',
   contain: 'object-contain',
   fill: 'object-fill',

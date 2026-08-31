@@ -1,11 +1,7 @@
 import { cva } from 'class-variance-authority';
 
-
 export const ratingVariants = cva(
-  [
-    'inline-flex items-center gap-2',
-    'transition-colors duration-200',
-  ],
+  ['inline-flex items-center gap-2', 'transition-colors duration-200'],
   {
     variants: {
       size: {
@@ -42,87 +38,71 @@ export const ratingVariants = cva(
   },
 );
 
-
-export const starVariants = cva(
-  [
-    'transition-colors duration-200',
-  ],
-  {
-    variants: {
-      size: {
-        sm: 'size-4',
-        md: 'size-5',
-        lg: 'size-6',
-      },
-      state: {
-        full: '',
-        half: '',
-        empty: '',
-      },
-      interactive: {
-        true: 'hover:scale-110',
-        false: '',
-      },
-      disabled: {
-        true: '',
-        false: '',
-      },
+export const starVariants = cva(['transition-colors duration-200'], {
+  variants: {
+    size: {
+      sm: 'size-4',
+      md: 'size-5',
+      lg: 'size-6',
     },
-    defaultVariants: {
-      size: 'md',
-      state: 'full',
-      interactive: false,
-      disabled: false,
+    state: {
+      full: '',
+      half: '',
+      empty: '',
+    },
+    interactive: {
+      true: 'hover:scale-110',
+      false: '',
+    },
+    disabled: {
+      true: '',
+      false: '',
     },
   },
-);
+  defaultVariants: {
+    size: 'md',
+    state: 'full',
+    interactive: false,
+    disabled: false,
+  },
+});
 
-
-export const ratingValueVariants = cva(
-  [
-    'font-medium',
-  ],
-  {
-    variants: {
-      size: {
-        sm: 'text-xs',
-        md: 'text-sm',
-        lg: 'text-base',
-      },
-      variant: {
-        default: '',
-        compact: 'text-xs',
-        minimal: 'text-xs',
-        review: 'text-sm',
-      },
+export const ratingValueVariants = cva(['font-medium'], {
+  variants: {
+    size: {
+      sm: 'text-xs',
+      md: 'text-sm',
+      lg: 'text-base',
     },
-    defaultVariants: {
-      size: 'md',
-      variant: 'default',
+    variant: {
+      default: '',
+      compact: 'text-xs',
+      minimal: 'text-xs',
+      review: 'text-sm',
     },
   },
-);
+  defaultVariants: {
+    size: 'md',
+    variant: 'default',
+  },
+});
 
-
-export const ratingCountVariants = cva(
-  [],
-  {
-    variants: {
-      size: {
-        sm: 'text-xs',
-        md: 'text-sm',
-        lg: 'text-base',
-      },
-      variant: {
-        default: '',
-        compact: 'text-xs',
-        minimal: 'text-xs',
-        review: 'text-sm',
-      },
+export const ratingCountVariants = cva([], {
+  variants: {
+    size: {
+      sm: 'text-xs',
+      md: 'text-sm',
+      lg: 'text-base',
     },
-    defaultVariants: {
-      size: 'md',
-      variant: 'default',
+    variant: {
+      default: '',
+      compact: 'text-xs',
+      minimal: 'text-xs',
+      review: 'text-sm',
     },
   },
-);
+  defaultVariants: {
+    size: 'md',
+    variant: 'default',
+  },
+});

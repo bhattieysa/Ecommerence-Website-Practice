@@ -1,9 +1,10 @@
 import type { HTMLAttributes, ReactNode } from 'react';
+import type { LucideProps } from 'lucide-react';
 
 export interface Feature {
   id: string;
 
-  icon: ReactNode;
+  icon: React.ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>>;
 
   title: string;
 

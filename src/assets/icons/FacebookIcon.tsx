@@ -1,4 +1,7 @@
-export function FacebookIcon({ className = '', ...props }: React.SVGProps<SVGSVGElement>) {
+export function FacebookIcon({
+  className = '',
+  ...props
+}: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       className={className}

@@ -31,11 +31,11 @@ export const marketingLayoutVariants = cva(
           'text-primary-foreground',
         ],
 
-        dark: ['bg-gray-800', 'text-white'],
+        Featured: ['bg-gray-800', 'text-white'],
 
-        sale: ['bg-yellow-100', 'text-gray-900'],
+        BestSeller: ['bg-yellow-100', 'text-gray-900'],
 
-        electronics: ['bg-orange-100', 'text-gray-900'],
+        Premium: ['bg-orange-100', 'text-gray-900'],
 
         fashion: [
           'bg-gradient-to-r',

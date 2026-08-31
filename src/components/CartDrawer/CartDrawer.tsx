@@ -1,28 +1,58 @@
-import { useState } from 'react';
-import { Box, Drawer, IconButton, Button, Divider } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { Box, Drawer, IconButton, Button, Divider, CircularProgress } from '@mui/material';
 import { ICONS } from '@/components/IconButton/IconButton.constants';
 import { Typography } from '@/components/Typography';
-import { useCart } from '@/contexts/CartContext';
+import { useCart } from '@/store/hooks';
+import { useAuth } from '@/contexts/AuthContext';
+import { fetchCart, removeFromCart, removeFromCartBackend, updateQuantityBackend } from '@/store/slices/cartSlice';
 import { CheckoutDrawer } from '@/components/CheckoutDrawer/CheckoutDrawer';
+import toast from 'react-hot-toast';
 
 interface CartDrawerProps {
   open: boolean;
   onClose: () => void;
+  onAuthRequired?: () => void;
 }
 
-export function CartDrawer({ open, onClose }: CartDrawerProps) {
+export function CartDrawer({ open, onClose, onAuthRequired }: CartDrawerProps) {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const {
-    items,
-    removeFromCart,
-    updateQuantity,
-    getTotalPrice,
-    getTotalItems,
-  } = useCart();
+  const { items, totalItems, totalPrice, dispatch, loading, error, updatingItemId } = useCart();
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    if (open) {
+      dispatch(fetchCart());
+    }
+  }, [open, dispatch]);
 
   const handleCheckout = () => {
+    if (!isAuthenticated) {
+      toast.error('Please log in to checkout');
+      onClose();
+      onAuthRequired?.();
+      return;
+    }
+
     onClose();
     setIsCheckoutOpen(true);
+  };
+
+  const handleRemoveFromCart = (cartItemId: number | undefined, productId: string | number) => {
+    if (cartItemId) {
+      dispatch(removeFromCartBackend(cartItemId));
+    } else {
+      // Fallback to local action if no cartItemId (guest/local cart)
+      dispatch(removeFromCart(String(productId)));
+    }
+  };
+
+  const handleUpdateQuantity = (cartItemId: number | undefined, productId: string | number, quantity: number) => {
+    if (cartItemId && quantity > 0) {
+      dispatch(updateQuantityBackend({ cartItemId, quantity }));
+    } else {
+      // Fallback to local action if no cartItemId (guest/local cart)
+      dispatch({ type: 'cart/updateQuantity', payload: { productId: String(productId), quantity } });
+    }
   };
 
   return (
@@ -51,9 +81,9 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
               >
                 My Shopping Cart
               </Typography>
-              {getTotalItems() > 0 && (
+              {totalItems > 0 && (
                 <span className="bg-blue-600 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">
-                  {getTotalItems()}
+                  {totalItems}
                 </span>
               )}
             </div>
@@ -67,7 +97,23 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
 
           {/* Cart Items */}
           <Box className="flex-1 overflow-y-auto p-6">
-            {items.length === 0 ? (
+            {loading ? (
+              <Box className="flex flex-col items-center justify-center h-full">
+                <CircularProgress />
+                <Typography variant="bodySm" className="mt-2 text-gray-500">
+                  Loading cart...
+                </Typography>
+              </Box>
+            ) : error ? (
+              <Box className="flex flex-col items-center justify-center h-full text-red-500">
+                <Typography variant="bodyLg" className="mb-2">
+                  Error loading cart
+                </Typography>
+                <Typography variant="bodySm">
+                  {error}
+                </Typography>
+              </Box>
+            ) : items.length === 0 ? (
               <Box className="flex flex-col items-center justify-center h-full text-gray-500">
                 <Typography variant="bodyLg" className="mb-2">
                   Your cart is empty
@@ -86,8 +132,8 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                     {/* Product Image */}
                     <Box className="shrink-0 w-20 h-20 bg-white rounded-lg overflow-hidden">
                       <img
-                        src={item.product.image.thumbnail.src}
-                        alt={item.product.image.thumbnail.alt}
+                        src={item.product.image?.thumbnail?.src || '/placeholder.jpg'}
+                        alt={item.product.image?.thumbnail?.alt || item.product.title}
                         className="w-full h-full object-cover"
                       />
                     </Box>
@@ -104,7 +150,11 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                         variant="bodyLg"
                         className="font-semibold text-gray-900 mb-2"
                       >
-                        ${item.product.price.current.toFixed(2)}
+                        ${(
+                          typeof item.product.price === 'number'
+                            ? item.product.price
+                            : item.product.price.current
+                        ).toFixed(2)}
                       </Typography>
 
                       {/* Quantity and Remove */}
@@ -112,9 +162,10 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                         <Box className="flex items-center gap-2 border border-gray-300 rounded-2xl bg-gray-100">
                           <IconButton
                             onClick={() =>
-                              updateQuantity(item.product.id, item.quantity - 1)
+                              handleUpdateQuantity(item.cartItemId, item.product.id, item.quantity - 1)
                             }
                             className="w-8 h-8 bg-white border border-gray-300 rounded hover:bg-gray-100"
+                            disabled={loading || updatingItemId === item.cartItemId}
                           >
                             <ICONS.remove className="h-4 w-4" />
                           </IconButton>
@@ -122,20 +173,26 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                             variant="bodyLg"
                             className="font-medium w-8 text-center"
                           >
-                            {item.quantity}
+                            {updatingItemId === item.cartItemId ? (
+                              <CircularProgress size={16} />
+                            ) : (
+                              item.quantity
+                            )}
                           </Typography>
                           <IconButton
                             onClick={() =>
-                              updateQuantity(item.product.id, item.quantity + 1)
+                              handleUpdateQuantity(item.cartItemId, item.product.id, item.quantity + 1)
                             }
                             className="w-8 h-8 bg-white border border-gray-300 rounded hover:bg-gray-100"
+                            disabled={loading || updatingItemId === item.cartItemId}
                           >
                             <ICONS.add className="h-4 w-4" />
                           </IconButton>
                         </Box>
 
                         <IconButton
-                          onClick={() => removeFromCart(item.product.id)}
+                          onClick={() => handleRemoveFromCart(item.cartItemId, item.product.id)}
+                          disabled={loading || updatingItemId === item.cartItemId}
                         >
                           <ICONS.delete className="h-5 w-5 text-red-500 hover:text-red-700 hover:bg-red-50" />
                         </IconButton>
@@ -163,7 +220,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                     variant="body"
                     className="font-bold text-xl text-gray-900"
                   >
-                    ${getTotalPrice().toFixed(2)}
+                    ${totalPrice.toFixed(2)}
                   </Typography>
                 </Box>
                 <Button
@@ -171,8 +228,9 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                   variant="contained"
                   className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg"
                   onClick={handleCheckout}
+                  disabled={loading}
                 >
-                  Checkout
+                  {loading ? 'Loading...' : 'Checkout'}
                 </Button>
               </Box>
             </>

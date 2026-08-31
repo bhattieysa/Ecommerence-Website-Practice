@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Dropdown } from './Dropdown';
 import { Container } from '@/components/Container';
 import { Section } from '@/components/Section';
-import { categoryItems } from '@/data/categoryDropdown.data';
 
 export function CategoryDropdowns() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -22,7 +21,7 @@ export function CategoryDropdowns() {
             onActiveChange={() => handleActiveChange('Groceries')}
           >
             <div className="p-2 min-w-48">
-              {categoryItems.Groceries.map((item) => (
+              {['Rice & Grains', 'Pasta & Noodles', 'Canned Goods', 'Snacks & Cookies', 'Beverages'].map((item) => (
                 <button
                   key={item}
                   className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary rounded-md transition-colors duration-150"
@@ -39,7 +38,7 @@ export function CategoryDropdowns() {
             onActiveChange={() => handleActiveChange('Premium Fruits')}
           >
             <div className="p-2 min-w-48">
-              {categoryItems['Premium Fruits'].map((item) => (
+              {['Apples', 'Oranges', 'Bananas', 'Grapes', 'Strawberries'].map((item) => (
                 <button
                   key={item}
                   className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary rounded-md transition-colors duration-150"
@@ -56,7 +55,7 @@ export function CategoryDropdowns() {
             onActiveChange={() => handleActiveChange('Home & Kitchen')}
           >
             <div className="p-2 min-w-48">
-              {categoryItems['Home & Kitchen'].map((item) => (
+              {['Cookware', 'Small Appliances', 'Dinnerware', 'Storage & Organization', 'Kitchen Tools'].map((item) => (
                 <button
                   key={item}
                   className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary rounded-md transition-colors duration-150"
@@ -73,7 +72,7 @@ export function CategoryDropdowns() {
             onActiveChange={() => handleActiveChange('Fashion')}
           >
             <div className="p-2 min-w-48">
-              {categoryItems.Fashion.map((item) => (
+              {['Men Clothing', 'Women Clothing', 'Kids Clothing', 'Footwear', 'Accessories'].map((item) => (
                 <button
                   key={item}
                   className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary rounded-md transition-colors duration-150"
@@ -90,7 +89,7 @@ export function CategoryDropdowns() {
             onActiveChange={() => handleActiveChange('Electronics')}
           >
             <div className="p-2 min-w-48">
-              {categoryItems.Electronics.map((item) => (
+              {['Smartphones', 'Laptops', 'Tablets', 'Headphones', 'Cameras'].map((item) => (
                 <button
                   key={item}
                   className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary rounded-md transition-colors duration-150"
@@ -108,7 +107,7 @@ export function CategoryDropdowns() {
             onActiveChange={() => handleActiveChange('Gaming')}
           >
             <div className="p-2 min-w-48">
-              {categoryItems.Gaming.map((item) => (
+              {['Video Games', 'Consoles', 'Gaming Accessories', 'VR Headsets', 'Gaming Chairs'].map((item) => (
                 <button
                   key={item}
                   className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary rounded-md transition-colors duration-150"
@@ -126,7 +125,7 @@ export function CategoryDropdowns() {
             onActiveChange={() => handleActiveChange('Beauty')}
           >
             <div className="p-2 min-w-48">
-              {categoryItems.Beauty.map((item) => (
+              {['Skincare', 'Makeup', 'Hair Care', 'Fragrances', 'Personal Care'].map((item) => (
                 <button
                   key={item}
                   className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary rounded-md transition-colors duration-150"
@@ -143,7 +142,7 @@ export function CategoryDropdowns() {
             onActiveChange={() => handleActiveChange('Home Improvement')}
           >
             <div className="p-2 min-w-48">
-              {categoryItems['Home Improvement'].map((item) => (
+              {['Tools', 'Paint Supplies', 'Lighting', 'Plumbing', 'Hardware'].map((item) => (
                 <button
                   key={item}
                   className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary rounded-md transition-colors duration-150"
@@ -160,7 +159,7 @@ export function CategoryDropdowns() {
             onActiveChange={() => handleActiveChange('Sports, Toys & Luggage')}
           >
             <div className="p-2 min-w-48">
-              {categoryItems['Sports, Toys & Luggage'].map((item) => (
+              {['Sports Equipment', 'Fitness', 'Outdoor Recreation', 'Toys & Games', 'Luggage & Travel Gear'].map((item) => (
                 <button
                   key={item}
                   className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary rounded-md transition-colors duration-150"

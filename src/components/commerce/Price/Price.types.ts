@@ -1,18 +1,17 @@
-import type { HTMLAttributes } from "react";
+import type { HTMLAttributes } from 'react';
 
 /**
  * Price component props
- * 
+ *
  * All monetary values are in minor units (cents, paisa, etc.)
  * @example
  * // $49.99
  * <Price value={4999} />
- * 
+ *
  * // PKR 1,250.00 with discount
  * <Price value={125000} originalValue={150000} currency="PKR" />
  */
-export interface PriceProps
-  extends HTMLAttributes<HTMLDivElement> {
+export interface PriceProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Current price in minor units (integer)
    */

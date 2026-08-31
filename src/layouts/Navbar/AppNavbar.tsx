@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ICONS } from '@/components/IconButton/IconButton.constants';
 import {
   Drawer,
@@ -14,9 +15,13 @@ import {
 import { IconButton } from '@/components/IconButton';
 import { Input } from '@/components/Input';
 import { Typography } from '@/components/Typography';
+import { Button } from '@/components/Button';
 import { AuthModal } from '@/app/auth/authModels';
 import { CartDrawer } from '@/components/CartDrawer/CartDrawer';
-import { useCart } from '@/contexts/CartContext';
+import { useCart } from '@/store/hooks';
+import { useProducts } from '@/hooks/useProducts';
+import { useCategories } from '@/hooks/useCategories';
+import { Rating } from '@/components/commerce/Rating';
 
 import { APP_BRAND, NAVBAR_LABELS, NAVBAR_LINKS } from './Navbar.constants';
 import { Navbar } from './Navbar';
@@ -25,10 +30,90 @@ export function AppNavbar() {
   const [open, setOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
-  const { getTotalItems } = useCart();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSearchDropdown, setShowSearchDropdown] = useState(false);
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const { totalItems } = useCart();
+  const navigate = useNavigate();
+
+  // Load recent searches from localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem('recentSearches');
+    if (stored) {
+      setRecentSearches(JSON.parse(stored));
+    }
+  }, []);
+
+  // Debounced search for products
+  const { data: searchResults } = useProducts(
+    searchQuery.length >= 2 ? { search: searchQuery, limit: 5 } : undefined
+  );
+
+  // Fetch categories for category matching
+  const { data: categories } = useCategories();
+
+  // Filter categories matching search query
+  const matchingCategories = categories?.filter((cat: any) =>
+    cat.name.toLowerCase().includes(searchQuery.toLowerCase())
+  ).slice(0, 3) || [];
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
+  };
+
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      saveRecentSearch(searchQuery.trim());
+      navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery('');
+      setShowSearchDropdown(false);
+    }
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    setShowSearchDropdown(value.length >= 2);
+  };
+
+  const handleSearchBlur = () => {
+    // Delay hiding dropdown to allow clicking on results
+    setTimeout(() => setShowSearchDropdown(false), 200);
+  };
+
+  const handleSearchFocus = () => {
+    setShowSearchDropdown(true);
+  };
+
+  const handleProductClick = (slug: string) => {
+    navigate(`/products/${slug}`);
+    setSearchQuery('');
+    setShowSearchDropdown(false);
+  };
+
+  const handleSearchClear = () => {
+    setSearchQuery('');
+    setShowSearchDropdown(false);
+    navigate('/');
+  };
+
+  const saveRecentSearch = (query: string) => {
+    const updated = [query, ...recentSearches.filter(s => s !== query)].slice(0, 5);
+    setRecentSearches(updated);
+    localStorage.setItem('recentSearches', JSON.stringify(updated));
+  };
+
+  const handleRecentSearchClick = (query: string) => {
+    setSearchQuery(query);
+    saveRecentSearch(query);
+    navigate(`/products?search=${encodeURIComponent(query)}`);
+    setShowSearchDropdown(false);
+  };
+
+  const handleCategoryClick = (slug: string) => {
+    navigate(`/categories/${slug}`);
+    setSearchQuery('');
+    setShowSearchDropdown(false);
   };
 
   const DrawerList = (
@@ -170,10 +255,145 @@ export function AppNavbar() {
               <ICONS.search className="h-7 w-7 text-blue-500" />
             </div>
 
+            <div className="absolute inset-y-0 right-3 flex items-center">
+              {searchQuery && (
+                <IconButton
+                  icon="close"
+                  aria-label="Clear search"
+                  onClick={handleSearchClear}
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-500 hover:text-gray-700"
+                />
+              )}
+            </div>
+
             <Input
-              className="pl-12 bg-blue-50 border-blue-200 h-15"
+              className="pl-12 pr-10 bg-blue-50 border-blue-200 h-15"
               placeholder={NAVBAR_LABELS.searchPlaceholder}
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onKeyDown={handleSearch}
+              onBlur={handleSearchBlur}
+              onFocus={handleSearchFocus}
             />
+
+            {/* Search Dropdown */}
+            {showSearchDropdown && (
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 z-50 max-h-96 overflow-y-auto">
+                {/* Recent Searches (shown when no search query) */}
+                {!searchQuery && recentSearches.length > 0 && (
+                  <div className="p-4 border-b border-gray-100">
+                    <Typography variant="body" className="font-semibold text-gray-700 mb-3">
+                      Recent Searches
+                    </Typography>
+                    <div className="flex flex-wrap gap-2">
+                      {recentSearches.map((query, index) => (
+                        <Button
+                          key={index}
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleRecentSearchClick(query)}
+                          className="text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                        >
+                          {query}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Category Matches */}
+                {searchQuery && matchingCategories.length > 0 && (
+                  <div className="p-4 border-b border-gray-100">
+                    <Typography variant="body" className="font-semibold text-gray-700 mb-3">
+                      Categories
+                    </Typography>
+                    {matchingCategories.map((category) => (
+                      <div
+                        key={category.id}
+                        onClick={() => handleCategoryClick(category.slug)}
+                        className="p-2 hover:bg-gray-50 cursor-pointer rounded flex items-center gap-2"
+                      >
+                        <ICONS.search className="h-4 w-4 text-gray-500" />
+                        <Typography variant="body" className="text-gray-700">
+                          {category.name}
+                        </Typography>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Product Results */}
+                {searchQuery && searchResults && searchResults.length > 0 && (
+                  <div className="p-4">
+                    <Typography variant="body" className="font-semibold text-gray-700 mb-3">
+                      Products
+                    </Typography>
+                    {searchResults.map((product) => (
+                  <div
+                    key={product.id}
+                    onClick={() => handleProductClick(product.slug)}
+                    className="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
+                  >
+                    <div className="flex items-start gap-3">
+                      {product.images && product.images.length > 0 && (
+                        <img
+                          src={product.images[0].url}
+                          alt={product.title}
+                          className="w-16 h-16 object-cover rounded"
+                        />
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <Typography variant="body" className="font-medium text-gray-900 truncate">
+                          {product.title}
+                        </Typography>
+                        <div className="flex items-center gap-2 mt-1">
+                          <Typography variant="caption" className="text-gray-600 font-semibold">
+                            ${product.price}
+                          </Typography>
+                          {product.compareAtPrice && product.compareAtPrice > product.price && (
+                            <Typography variant="caption" className="text-gray-400 line-through">
+                              ${product.compareAtPrice}
+                            </Typography>
+                          )}
+                        </div>
+                        {product.averageRating > 0 && (
+                          <div className="flex items-center gap-1 mt-1">
+                            <Rating value={product.averageRating} size="sm" readonly />
+                            <Typography variant="caption" className="text-gray-500">
+                              ({product.reviewCount})
+                            </Typography>
+                          </div>
+                        )}
+                      </div>
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleProductClick(product.slug);
+                        }}
+                        className="shrink-0"
+                      >
+                        View
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+                )}
+
+                {/* No Results */}
+                {searchQuery && searchResults && searchResults.length === 0 && matchingCategories.length === 0 && (
+                  <div className="p-6 text-center">
+                    <Typography variant="body" className="text-gray-500">
+                      No products or categories found for "{searchQuery}"
+                    </Typography>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         }
         right={
@@ -218,9 +438,9 @@ export function AppNavbar() {
                   className="text-blue-500 hover:text-blue-600"
                   onClick={() => setIsCartDrawerOpen(true)}
                 />
-                {getTotalItems() > 0 && (
+                {totalItems > 0 && (
                   <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                    {getTotalItems()}
+                    {totalItems}
                   </span>
                 )}
               </div>
@@ -242,9 +462,9 @@ export function AppNavbar() {
                 className="text-blue-500 hover:text-blue-600"
                 onClick={() => setIsCartDrawerOpen(true)}
               />
-              {getTotalItems() > 0 && (
+              {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                  {getTotalItems()}
+                  {totalItems}
                 </span>
               )}
             </div>
@@ -276,6 +496,7 @@ export function AppNavbar() {
       <CartDrawer
         open={isCartDrawerOpen}
         onClose={() => setIsCartDrawerOpen(false)}
+        onAuthRequired={() => setIsAuthModalOpen(true)}
       />
     </>
   );

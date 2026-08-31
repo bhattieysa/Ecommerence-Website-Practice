@@ -69,7 +69,7 @@ export interface ProductServices {
 }
 
 export interface Product {
-  id: string;
+  id: string | number;
 
   sku: string;
 
@@ -85,7 +85,9 @@ export interface Product {
 
   image: ProductImage;
 
-  price: ProductPrice;
+  price: number | ProductPrice;
+  
+  compareAtPrice?: number;
 
   rating: ProductRating;
 
@@ -114,4 +116,12 @@ export interface Product {
   returnsInfo?: string;
 
   codAvailable?: boolean;
+  
+  averageRating?: number;
+  
+  images?: Array<{
+    id: number;
+    url: string;
+    isPrimary: boolean;
+  }>;
 }

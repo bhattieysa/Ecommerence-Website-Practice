@@ -1,4 +1,7 @@
-export function GoogleIcon({ className = '', ...props }: React.SVGProps<SVGSVGElement>) {
+export function GoogleIcon({
+  className = '',
+  ...props
+}: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       className={className}

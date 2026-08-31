@@ -110,7 +110,7 @@ export const categoryImageWrapperVariants = cva(
 export const categoryImageVariants = cva([
   'h-full',
   'w-full',
-  'object-contain',
+  'object-cover',
 ]);
 
 export const categoryContentVariants = cva([

@@ -1,7 +1,5 @@
 import { IconButton } from '@/components/IconButton';
 
-import { HERO_SLIDES } from '@/data/hero.data';
-
 import { Hero } from './Hero';
 import {
   heroArrowButtonVariants,
@@ -14,8 +12,11 @@ import {
   heroViewportVariants,
 } from './HeroVariants';
 import { useHeroCarousel } from './UseHeroCarousel';
+import { useBanners } from '@/hooks/useBanners';
 
 export function HeroCarousel() {
+  const { data: banners } = useBanners();
+  
   const {
     emblaRef,
     selectedIndex,
@@ -64,7 +65,7 @@ export function HeroCarousel() {
       {/* Embla Viewport */}
       <div ref={emblaRef} className={heroViewportVariants()}>
         <div className={heroTrackVariants()}>
-          {HERO_SLIDES.map((slide) => (
+          {(banners || []).map((slide) => (
             <div key={slide.id} className={heroSlideVariants()}>
               <Hero {...slide} size="sm" />
             </div>

@@ -6,7 +6,4 @@ type TypographyOwnProps = VariantProps<typeof TypographyVariants> & {
   weight?: TypographyWeight;
 };
 
-export type TypographyProps = PolymorphicWithDefault<
-  TypographyOwnProps,
-  'p'
->;
+export type TypographyProps = PolymorphicWithDefault<TypographyOwnProps, 'p'>;

@@ -21,7 +21,11 @@ export function CategorySection({
   categoryCardVariant,
   className,
 }: CategorySectionProps) {
-  const displayedCategories = categories.slice(0, limit ?? categories.length);
+  const categoriesArray = Array.isArray(categories) ? categories : [];
+  const displayedCategories = categoriesArray.slice(
+    0,
+    limit ?? categoriesArray.length,
+  );
 
   return (
     <section className={cn(categorySectionVariants(), className)}>

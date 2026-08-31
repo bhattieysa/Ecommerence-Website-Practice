@@ -43,34 +43,26 @@ export function PromoBanner({
       {...props}
     >
       <MarketingLayoutContent
-        className={cn(alignment === 'center' ? 'items-center text-center' : '')}
-      >
-        {badge && (
-          <Badge
-            variant={badgeVariant || 'sale'}
-            className="text-s font-bold py-5 rounded-xl w-35 h-10 px-0"
-          >
-            {badge}
-          </Badge>
+        className={cn(
+          alignment === 'center' ? 'items-center text-center' : '',
+          'h-full'
         )}
-
-        <MarketingLayoutHeading>
-          {/* {subtitle && (
-            <Typography
-              variant="body"
-              className={cn(
-                'text-sm font-medium mb-1',
-                variant === 'dark' ? 'text-white opacity-80' : 'opacity-80',
-              )}
+      >
+        <MarketingLayoutHeading className="gap-4 h-full flex flex-col justify-center">
+          {badge && (
+            <Badge
+              variant={badgeVariant || 'sale'}
+              className="text-s font-bold py-5 rounded-xl w-35 h-10 px-0"
             >
-              {subtitle}
-            </Typography>
-          )} */}
+              {badge}
+            </Badge>
+          )}
+
           <Typography
             variant="heading1"
             className={cn(
-              'max-w-xl text-2xl font-bold',
-              variant === 'dark' ? 'text-white' : '',
+              'max-w-xl text-2xl font-bold line-clamp-3',
+              variant === 'Featured' ? 'text-white' : '',
             )}
           >
             {title}
@@ -80,8 +72,8 @@ export function PromoBanner({
             <Typography
               variant="body"
               className={cn(
-                'max-w-lg text-sm',
-                variant === 'dark' ? 'text-white opacity-90' : 'opacity-90',
+                'max-w-lg text-sm line-clamp-2',
+                variant === 'BestSeller' ? 'text-white opacity-90' : 'opacity-90',
               )}
             >
               {description}

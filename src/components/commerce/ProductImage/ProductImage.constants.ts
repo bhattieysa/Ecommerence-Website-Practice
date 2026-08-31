@@ -22,7 +22,7 @@ export const PRODUCT_IMAGE_RADII = {
 
 export const PRODUCT_IMAGE_DEFAULTS = {
   loading: 'lazy',
-  priority: false ,
+  priority: false,
 } as const;
 
 export const PRODUCT_IMAGE_FALLBACK_ALT = 'Product image unavailable';

@@ -12,12 +12,36 @@ import {
   featureIconVariants,
 } from './FeatureSectionVariants';
 
-const iconMap = {
-  truck: Truck,
-  'shield-check': ShieldCheck,
-  'badge-dollar-sign': BadgeDollarSign,
-  headphones: Headphones,
-};
+const FEATURES = [
+  {
+    id: 'free-shipping',
+    icon: Truck,
+    title: 'Free Shipping',
+    description: 'On orders over $50',
+    color: 'text-blue-600',
+  },
+  {
+    id: 'secure-payment',
+    icon: ShieldCheck,
+    title: 'Secure Payment',
+    description: '100% secure payment',
+    color: 'text-green-600',
+  },
+  {
+    id: 'best-prices',
+    icon: BadgeDollarSign,
+    title: 'Best Prices',
+    description: 'Quality at lowest prices',
+    color: 'text-orange-600',
+  },
+  {
+    id: '24-7-support',
+    icon: Headphones,
+    title: '24/7 Support',
+    description: 'Dedicated support team',
+    color: 'text-purple-600',
+  },
+];
 
 export function FeatureCard({
   feature,
@@ -25,7 +49,7 @@ export function FeatureCard({
   variant,
   className,
 }: FeatureCardProps) {
-  const IconComponent = iconMap[feature.icon as keyof typeof iconMap] || Truck;
+  const IconComponent = feature.icon;
 
   const content = (
     <>
@@ -76,3 +100,5 @@ export function FeatureCard({
     </article>
   );
 }
+
+export { FEATURES };

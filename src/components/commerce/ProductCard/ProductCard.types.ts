@@ -3,9 +3,37 @@ import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import type { VariantProps } from 'class-variance-authority';
 
 import { ProductCardVariants } from '@/components/commerce/ProductCard/ProductCardVariants';
-import type { Product } from '@/types/product';
 
-export interface ProductCardData extends Product {}
+export interface ProductCardData {
+  id: number;
+  sku: string;
+  slug: string;
+  title: string;
+  description?: string;
+  brand: string;
+  price: number;
+  compareAtPrice?: number;
+  currency: string;
+  stock: number;
+  status: string;
+  featured: boolean;
+  flashSale: boolean;
+  bestSeller: boolean;
+  newArrival: boolean;
+  trending: boolean;
+  averageRating: number;
+  reviewCount: number;
+  category?: {
+    id: number;
+    name: string;
+    slug: string;
+  };
+  images?: Array<{
+    id: number;
+    url: string;
+    isPrimary: boolean;
+  }>;
+}
 
 export interface ProductCardProps
   extends

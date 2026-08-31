@@ -42,16 +42,19 @@ export function AboutPage() {
           }
         }
         .animate-fade-in-up {
-          animation: fadeInUp 0.8s ease-out forwards;
+          animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         .animate-fade-in {
-          animation: fadeIn 0.6s ease-out forwards;
+          animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .animate-fade-in-slow {
+          animation: fadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         .animate-scale-in {
-          animation: scaleIn 0.6s ease-out forwards;
+          animation: scaleIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         .animate-slide-in-left {
-          animation: slideInLeft 0.8s ease-out forwards;
+          animation: slideInLeft 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }
@@ -61,21 +64,22 @@ export function AboutPage() {
         .delay-600 { animation-delay: 0.6s; }
       `}</style>
       {/* Hero Section */}
-      <Section spacing="large" className="bg-linear-to-r from-blue-600 ">
-        <Container size="hero">
-          <div className="text-center py-12 animate-fade-in-up">
+      <Section spacing="large" className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&h=1080&fit=crop')] bg-cover bg-top animate-fade-in-slow"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-blue-300/90"></div>
+        <Container size="hero" className="relative">
+          <div className="text-center py-20 md:py-32 animate-fade-in-up">
             <Typography
               variant="h1"
-              className="text-4xl md:text-5xl font-bold mb-4 text-white"
+              className="text-4xl md:text-6xl font-bold mb-6 text-white"
             >
               About MegaMart
             </Typography>
             <Typography
               variant="bodyLg"
-              className="text-blue-100 max-w-2xl mx-auto"
+              className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed"
             >
-              Your one-stop destination for quality products at unbeatable
-              prices
+              Your one-stop destination for quality products at unbeatable prices
             </Typography>
           </div>
         </Container>
@@ -84,7 +88,7 @@ export function AboutPage() {
       {/* Mission Section */}
       <Section spacing="large">
         <Container size="hero">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 animate-fade-in-up">
             <Typography
               variant="h2"
               className="text-3xl font-bold text-gray-900 mb-4"
@@ -113,7 +117,7 @@ export function AboutPage() {
 
           {/* Values Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white rounded-xl shadow-md p-6 text-center border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 animate-fade-in-up delay-100">
+            <div className="bg-white rounded-xl shadow-md p-6 text-center border border-gray-100 hover:shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 animate-fade-in-up delay-100">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Target className="w-8 h-8 text-blue-600" />
               </div>
@@ -125,7 +129,7 @@ export function AboutPage() {
               </Typography>
             </div>
 
-            <div className="bg-white rounded-xl shadow-md p-6 text-center border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 animate-fade-in-up delay-200">
+            <div className="bg-white rounded-xl shadow-md p-6 text-center border border-gray-100 hover:shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 animate-fade-in-up delay-200">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="w-8 h-8 text-green-600" />
               </div>
@@ -137,7 +141,7 @@ export function AboutPage() {
               </Typography>
             </div>
 
-            <div className="bg-white rounded-xl shadow-md p-6 text-center border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 animate-fade-in-up delay-300">
+            <div className="bg-white rounded-xl shadow-md p-6 text-center border border-gray-100 hover:shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 animate-fade-in-up delay-300">
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="w-8 h-8 text-purple-600" />
               </div>
@@ -149,7 +153,7 @@ export function AboutPage() {
               </Typography>
             </div>
 
-            <div className="bg-white rounded-xl shadow-md p-6 text-center border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 animate-fade-in-up delay-400">
+            <div className="bg-white rounded-xl shadow-md p-6 text-center border border-gray-100 hover:shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 animate-fade-in-up delay-400">
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <ShoppingBag className="w-8 h-8 text-orange-600" />
               </div>
@@ -215,7 +219,7 @@ export function AboutPage() {
       <Section spacing="large">
         <Container size="hero">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="bg-linear-to-br from-blue-500 to-blue-600 rounded-full w-40 h-40 md:w-48 md:h-48 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 mx-auto animate-scale-in delay-100">
+            <div className="bg-linear-to-br from-blue-500 to-blue-600 rounded-full w-40 h-40 md:w-48 md:h-48 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-110 mx-auto animate-scale-in delay-100">
               <Typography
                 variant="h1"
                 className="text-3xl md:text-4xl font-bold text-white mb-1"
@@ -226,7 +230,7 @@ export function AboutPage() {
                 Happy Customers
               </Typography>
             </div>
-            <div className="bg-linear-to-br from-green-500 to-green-600 rounded-full w-40 h-40 md:w-48 md:h-48 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 mx-auto animate-scale-in delay-200">
+            <div className="bg-linear-to-br from-green-500 to-green-600 rounded-full w-40 h-40 md:w-48 md:h-48 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-110 mx-auto animate-scale-in delay-200">
               <Typography
                 variant="h1"
                 className="text-3xl md:text-4xl font-bold text-white mb-1"
@@ -237,7 +241,7 @@ export function AboutPage() {
                 Products
               </Typography>
             </div>
-            <div className="bg-linear-to-br from-purple-500 to-purple-600 rounded-full w-40 h-40 md:w-48 md:h-48 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 mx-auto animate-scale-in delay-300">
+            <div className="bg-linear-to-br from-purple-500 to-purple-600 rounded-full w-40 h-40 md:w-48 md:h-48 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-110 mx-auto animate-scale-in delay-300">
               <Typography
                 variant="h1"
                 className="text-3xl md:text-4xl font-bold text-white mb-1"
@@ -248,7 +252,7 @@ export function AboutPage() {
                 Categories
               </Typography>
             </div>
-            <div className="bg-linear-to-br from-orange-500 to-orange-600 rounded-full w-40 h-40 md:w-48 md:h-48 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all hover:scale-110 mx-auto animate-scale-in delay-400">
+            <div className="bg-linear-to-br from-orange-500 to-orange-600 rounded-full w-40 h-40 md:w-48 md:h-48 flex flex-col items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-110 mx-auto animate-scale-in delay-400">
               <Typography
                 variant="h1"
                 className="text-3xl md:text-4xl font-bold text-white mb-1"

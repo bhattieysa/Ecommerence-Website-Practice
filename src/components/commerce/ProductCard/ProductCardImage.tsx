@@ -5,11 +5,7 @@ import { cn } from '@/lib/utils/cn';
 
 import type { ProductCardData } from './ProductCard.types';
 import type { ProductCardProps } from './ProductCard.types';
-import {
-  getDiscountPercentage,
-  hasBadge,
-  isInStock,
-} from '@/components/commerce/ProductCard/ProductCard.utils';
+import { getDiscountPercentage } from '@/components/commerce/ProductCard/ProductCard.utils';
 import { ProductCardImageVariants } from './ProductCardVariants';
 
 interface ProductCardImageProps {
@@ -23,18 +19,21 @@ export function ProductCardImage({
   size,
   className,
 }: ProductCardImageProps) {
-  const available = isInStock(product);
+  const available = product.stock > 0;
   const isCompact = size === 'compact';
   const discountPercentage = getDiscountPercentage(
-    product.price.current,
-    product.price.original,
+    product.price,
+    product.compareAtPrice,
   );
+  const primaryImage =
+    product.images?.find((img) => img.isPrimary) || product.images?.[0];
+  const imageUrl = primaryImage?.url || '/placeholder.jpg';
 
   return (
     <div className={cn(ProductCardImageVariants({ size }), className)}>
       <ProductImage
-        src={product.image.thumbnail.src}
-        alt={product.image.thumbnail.alt}
+        src={imageUrl}
+        alt={product.title}
         className={cn(
           'h-full w-full transition-all duration-300 ease-in-out group-hover:scale-105',
           isCompact ? 'object-contain p-3' : 'object-cover',
@@ -52,8 +51,10 @@ export function ProductCardImage({
         </Badge>
       )}
 
-      {!isCompact && hasBadge(product) && (
-        <Badge className="absolute left-3 top-3">{product.badge}</Badge>
+      {!isCompact && (product.featured || product.newArrival) && (
+        <Badge className="absolute left-3 top-3">
+          {product.featured ? 'featured' : product.newArrival ? 'new' : ''}
+        </Badge>
       )}
 
       {!available && (

@@ -6,18 +6,17 @@ import type { ProductCardData, ProductCardProps } from '../ProductCard';
 
 import { ProductGridVariants } from './ProductGridVariants';
 
-export interface ProductGridCardProps
-  extends Pick<
-    ProductCardProps,
-    | 'size'
-    | 'radius'
-    | 'showCategory'
-    | 'showRating'
-    | 'showOriginalPrice'
-    | 'showSavings'
-    | 'showAddToCart'
-    | 'hoverable'
-  > {}
+export interface ProductGridCardProps extends Pick<
+  ProductCardProps,
+  | 'size'
+  | 'radius'
+  | 'showCategory'
+  | 'showRating'
+  | 'showOriginalPrice'
+  | 'showSavings'
+  | 'showAddToCart'
+  | 'hoverable'
+> {}
 
 export interface ProductGridActions {
   onProductClick?: (product: ProductCardData) => void;

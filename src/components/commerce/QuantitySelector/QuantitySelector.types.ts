@@ -2,9 +2,7 @@ import type { ComponentPropsWithoutRef } from 'react';
 
 import type { VariantProps } from 'class-variance-authority';
 
-import {
-  quantitySelectorVariants,
-} from '@/components/commerce/QuantitySelector/QuantityVariants';
+import { quantitySelectorVariants } from '@/components/commerce/QuantitySelector/QuantityVariants';
 
 export interface QuantitySelectorProps
   extends

@@ -12,9 +12,12 @@ import {
 } from '@mui/material';
 import { ICONS } from '@/components/IconButton/IconButton.constants';
 import { Typography } from '@/components/Typography';
-import { useCart } from '@/contexts/CartContext';
+import { useCart } from '@/store/hooks';
+import { useAuth } from '@/contexts/AuthContext';
+import { clearCart, clearCartBackend } from '@/store/slices/cartSlice';
+import { createOrder } from '@/store/slices/ordersSlice';
 import paypalIcon from '@/assets/icons/paypal-svgrepo-com.svg';
-import applePayIcon from '@/assets/icons/apple-pay-svgrepo-com.svg';
+import toast from 'react-hot-toast';
 
 type CheckoutStep = 'delivery' | 'payment' | 'confirmation';
 
@@ -26,8 +29,13 @@ interface CheckoutDrawerProps {
 export function CheckoutDrawer({ open, onClose }: CheckoutDrawerProps) {
   const [currentStep, setCurrentStep] = useState<CheckoutStep>('delivery');
   const [deliveryOption, setDeliveryOption] = useState('free');
-  const [paymentMethod, setPaymentMethod] = useState('card');
-  const { items, getTotalPrice } = useCart();
+  const [paymentMethod, setPaymentMethod] = useState('CREDIT_CARD');
+  const [shippingAddress, setShippingAddress] = useState('');
+  const [billingAddress, setBillingAddress] = useState('');
+  const [notes, setNotes] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { items, totalPrice, dispatch } = useCart();
+  const { isAuthenticated } = useAuth();
 
   const deliveryOptions = [
     {
@@ -56,17 +64,83 @@ export function CheckoutDrawer({ open, onClose }: CheckoutDrawerProps) {
   };
 
   const getTotalWithDelivery = () => {
-    return getTotalPrice() + getDeliveryPrice();
+    return totalPrice + getDeliveryPrice();
   };
 
-  const handleContinue = () => {
+  const handleContinue = async () => {
     if (currentStep === 'delivery') {
       setCurrentStep('payment');
     } else if (currentStep === 'payment') {
       setCurrentStep('confirmation');
     } else if (currentStep === 'confirmation') {
-      // Submit order logic here
-      onClose();
+      await handleSubmitOrder();
+    }
+  };
+
+  const handleSubmitOrder = async () => {
+    if (!isAuthenticated) {
+      toast.error('Please log in to place an order');
+      return;
+    }
+
+    if (!shippingAddress.trim()) {
+      toast.error('Please enter a shipping address');
+      return;
+    }
+
+    if (items.length === 0) {
+      toast.error('Your cart is empty');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const orderData = {
+        items: items.map((item) => ({
+          productId: typeof item.product.id === 'number' ? item.product.id : parseInt(String(item.product.id)),
+          quantity: item.quantity,
+        })),
+        paymentMethod: paymentMethod as any,
+        shippingAddress,
+        billingAddress: billingAddress || undefined,
+        notes: notes || undefined,
+      };
+
+      const result = await dispatch(createOrder(orderData));
+
+      if (createOrder.fulfilled.match(result)) {
+        toast.success('Order created successfully!');
+        try {
+          await dispatch(clearCartBackend());
+        } catch (err: any) {
+          // Log but continue — clear frontend cart and close modal regardless
+          // eslint-disable-next-line no-console
+          console.error('Failed to clear backend cart:', err?.message || err);
+        }
+
+        dispatch(clearCart());
+
+        // Notify other UI (e.g., CartDrawer in AppNavbar) to close if open
+        try {
+          window.dispatchEvent(new CustomEvent('megamar:closeCartDrawer'));
+        } catch (e) {
+          // ignore
+        }
+
+        onClose();
+        setCurrentStep('delivery');
+        setDeliveryOption('free');
+        setPaymentMethod('CREDIT_CARD');
+        setShippingAddress('');
+        setBillingAddress('');
+        setNotes('');
+      } else {
+        toast.error((result as any)?.payload as string || 'Failed to create order');
+      }
+    } catch (error: any) {
+      toast.error(error.message || 'Failed to create order');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -159,6 +233,36 @@ export function CheckoutDrawer({ open, onClose }: CheckoutDrawerProps) {
         </Typography>
       </Box>
 
+      <Box className="mb-6">
+        <TextField
+          fullWidth
+          label="Shipping Address"
+          variant="outlined"
+          size="small"
+          multiline
+          rows={3}
+          value={shippingAddress}
+          onChange={(e) => setShippingAddress(e.target.value)}
+          className="bg-white"
+          required
+        />
+      </Box>
+
+      <Box className="mb-6">
+        <TextField
+          fullWidth
+          label="Billing Address (Optional)"
+          variant="outlined"
+          size="small"
+          multiline
+          rows={3}
+          value={billingAddress}
+          onChange={(e) => setBillingAddress(e.target.value)}
+          className="bg-white"
+          helperText="Leave blank to use shipping address"
+        />
+      </Box>
+
       <RadioGroup
         value={deliveryOption}
         onChange={(e) => setDeliveryOption(e.target.value)}
@@ -220,37 +324,33 @@ export function CheckoutDrawer({ open, onClose }: CheckoutDrawerProps) {
       <Box className="flex gap-3 mb-6">
         <Box
           className={`flex-1 p-1 border rounded-lg cursor-pointer text-center transition-all ${
-            paymentMethod === 'card'
+            paymentMethod === 'CREDIT_CARD'
               ? 'border-blue-600 bg-blue-50'
               : 'border-gray-200 hover:border-gray-300'
           }`}
-          onClick={() => setPaymentMethod('card')}
+          onClick={() => setPaymentMethod('CREDIT_CARD')}
         >
           <ICONS.creditCard className="h-23 w-23 mx-auto text-gray-700" />
         </Box>
         <Box
           className={`flex-1 p-1 border rounded-lg cursor-pointer text-center transition-all ${
-            paymentMethod === 'paypal'
+            paymentMethod === 'PAYPAL'
               ? 'border-blue-600 bg-blue-50'
               : 'border-gray-200 hover:border-gray-300'
           }`}
-          onClick={() => setPaymentMethod('paypal')}
+          onClick={() => setPaymentMethod('PAYPAL')}
         >
           <img src={paypalIcon} alt="PayPal" className="h-24 w-24 mx-auto" />
         </Box>
         <Box
           className={`flex-1 p-1 border rounded-lg cursor-pointer text-center transition-all ${
-            paymentMethod === 'applepay'
+            paymentMethod === 'CASH_ON_DELIVERY'
               ? 'border-blue-600 bg-blue-50'
               : 'border-gray-200 hover:border-gray-300'
           }`}
-          onClick={() => setPaymentMethod('applepay')}
+          onClick={() => setPaymentMethod('CASH_ON_DELIVERY')}
         >
-          <img
-            src={applePayIcon}
-            alt="Apple Pay"
-            className="h-24 w-24 mx-auto"
-          />
+          <ICONS.package className="h-23 w-23 mx-auto text-gray-700" />
         </Box>
       </Box>
 
@@ -308,6 +408,21 @@ export function CheckoutDrawer({ open, onClose }: CheckoutDrawerProps) {
           Save my Card details
         </Typography>
       </Box>
+
+      <Box className="mt-4">
+        <TextField
+          fullWidth
+          label="Order Notes (Optional)"
+          variant="outlined"
+          size="small"
+          multiline
+          rows={2}
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+          className="bg-white"
+          helperText="Any special instructions for your order"
+        />
+      </Box>
     </Box>
   );
 
@@ -321,10 +436,10 @@ export function CheckoutDrawer({ open, onClose }: CheckoutDrawerProps) {
           variant="h3"
           className="font-bold text-gray-900 text-center"
         >
-          Order Confirmed!
+          Review Your Order
         </Typography>
         <Typography variant="bodySm" className="text-gray-500 text-center mt-2">
-          Thank you for your purchase
+          Confirm the details below before submitting
         </Typography>
       </Box>
 
@@ -362,7 +477,11 @@ export function CheckoutDrawer({ open, onClose }: CheckoutDrawerProps) {
                 variant="bodySm"
                 className="font-semibold text-gray-900"
               >
-                ${(item.product.price.current * item.quantity).toFixed(2)}
+                ${(
+                  (typeof item.product.price === 'number'
+                    ? item.product.price
+                    : item.product.price.current) * item.quantity
+                ).toFixed(2)}
               </Typography>
             </Box>
           ))}
@@ -374,7 +493,7 @@ export function CheckoutDrawer({ open, onClose }: CheckoutDrawerProps) {
               Subtotal
             </Typography>
             <Typography variant="bodySm" className="font-medium text-gray-900">
-              ${getTotalPrice().toFixed(2)}
+              ${totalPrice.toFixed(2)}
             </Typography>
           </Box>
           <Box className="flex justify-between items-center">
@@ -471,9 +590,10 @@ export function CheckoutDrawer({ open, onClose }: CheckoutDrawerProps) {
             fullWidth={currentStep === 'delivery'}
             variant="contained"
             className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg"
-            onClick={handleContinue}
+            onClick={() => (currentStep === 'confirmation' ? handleSubmitOrder() : handleContinue())}
+            disabled={isSubmitting}
           >
-            {currentStep === 'confirmation' ? 'Submit Order' : 'Continue'}
+            {isSubmitting ? 'Processing...' : currentStep === 'confirmation' ? 'Submit Order' : 'Continue'}
           </Button>
         </Box>
       </Box>

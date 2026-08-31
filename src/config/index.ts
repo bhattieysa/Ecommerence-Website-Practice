@@ -1,1 +1,1 @@
-export { COMMERCE_CONFIG, type CommerceConfig } from "./commerce";
+export { COMMERCE_CONFIG, type CommerceConfig } from './commerce';

@@ -56,7 +56,9 @@ export function ProductCard({
           radius,
           size,
         }),
-        hoverable && !isCompact && 'hover:-translate-y-1 shadow-sm hover:shadow-lg',
+        hoverable &&
+          !isCompact &&
+          'hover:-translate-y-1 shadow-sm hover:shadow-lg',
         className,
       )}
       {...props}

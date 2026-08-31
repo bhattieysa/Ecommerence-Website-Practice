@@ -66,4 +66,3 @@ export function validateQuantityRange(min: number, max: number): void {
     throw new Error('QuantitySelector: min cannot be greater than max.');
   }
 }
-    

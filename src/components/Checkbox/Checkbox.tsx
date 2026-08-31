@@ -6,18 +6,9 @@ import { CheckboxVariants } from '@/components/Checkbox/CheckboxVariants';
 import type { CheckboxProps } from './Checkbox.types';
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  (
-    {
-      className,
-      size,
-      label,
-      id,
-      children,
-      ...props
-    },
-    ref,
-  ) => {
-    const checkboxId = id || `checkbox-${Math.random().toString(36).substr(2, 9)}`;
+  ({ className, size, label, id, children, ...props }, ref) => {
+    const checkboxId =
+      id || `checkbox-${Math.random().toString(36).substr(2, 9)}`;
 
     return (
       <div className="flex items-center space-x-2">
@@ -25,10 +16,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           ref={ref}
           id={checkboxId}
           type="checkbox"
-          className={cn(
-            CheckboxVariants({ size }),
-            className,
-          )}
+          className={cn(CheckboxVariants({ size }), className)}
           {...props}
         />
         {(label || children) && (

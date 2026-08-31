@@ -1,4 +1,7 @@
-export function LinkedinIcon({ className = '', ...props }: React.SVGProps<SVGSVGElement>) {
+export function LinkedinIcon({
+  className = '',
+  ...props
+}: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       className={className}

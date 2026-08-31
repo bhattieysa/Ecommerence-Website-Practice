@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { Product } from '@/types/product';
-import { electronicsProducts } from '@/data/electronics.data';
 
 export interface CartItem {
   product: Product;
@@ -21,14 +20,7 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>(() => {
-    // Initialize with 5 dummy products
-    const dummyProducts = electronicsProducts.slice(0, 5);
-    return dummyProducts.map((product) => ({
-      product,
-      quantity: 1,
-    }));
-  });
+  const [items, setItems] = useState<CartItem[]>([]);
 
   const addToCart = (product: Product) => {
     setItems((prevItems) => {

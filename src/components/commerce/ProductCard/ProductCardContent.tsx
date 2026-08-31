@@ -34,23 +34,23 @@ export function ProductCardContent({
   className,
 }: ProductCardContentProps) {
   const isCompact = size === 'compact';
-  const currentPrice = product.price.current;
-  const originalPrice = product.price.original;
+  const currentPrice = product.price;
+  const originalPrice = product.compareAtPrice;
   const productHasRating = hasRating(
-    product.rating?.value,
-    product.rating?.reviewCount,
+    product.averageRating,
+    product.reviewCount,
   );
   const productHasDiscount = hasDiscount(currentPrice, originalPrice);
   const savingsAmount =
-    productHasDiscount && originalPrice
-      ? originalPrice - currentPrice
-      : 0;
+    productHasDiscount && originalPrice ? originalPrice - currentPrice : 0;
 
   return (
-    <div className={cn('flex flex-col', isCompact ? 'gap-1' : 'gap-2', className)}>
+    <div
+      className={cn('flex flex-col', isCompact ? 'gap-1' : 'gap-2', className)}
+    >
       {showCategory && product.category && !isCompact && (
         <Typography variant="overline" color="muted">
-          {product.category}
+          {product.category.name}
         </Typography>
       )}
 
@@ -67,8 +67,8 @@ export function ProductCardContent({
 
       {showRating && productHasRating && !isCompact && (
         <Rating
-          value={product.rating.value}
-          reviewCount={product.rating.reviewCount}
+          value={product.averageRating}
+          reviewCount={product.reviewCount}
         />
       )}
 
@@ -77,7 +77,7 @@ export function ProductCardContent({
         originalValue={
           showOriginalPrice && productHasDiscount ? originalPrice : undefined
         }
-        currency={product.price.currency}
+        currency={product.currency}
         showDiscount={!isCompact}
         className={isCompact ? 'gap-1.5' : undefined}
       />
@@ -87,7 +87,7 @@ export function ProductCardContent({
           Save -{' '}
           {formatMoney(
             savingsAmount,
-            product.price.currency ?? COMMERCE_CONFIG.currency,
+            product.currency ?? COMMERCE_CONFIG.currency,
           )}
         </Typography>
       )}

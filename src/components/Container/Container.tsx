@@ -12,7 +12,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
         {...props}
       />
     );
-  }
+  },
 );
 
-Container.displayName = "Container";
+Container.displayName = 'Container';
